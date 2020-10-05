@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ConsoleQuest
 {
-	class Enemy : Character
+	public class Enemy : Character
 	{
 		public int GainExp
 		{ get; private set; }
 
-		public Enemy(float maxHP, float attackPoint, float defencePoint,
+		public Enemy(string name, float maxHP, float attackPoint, float defencePoint,
 			int gainExp)
-			: base(maxHP, attackPoint, defencePoint)
+			: base(name, maxHP, attackPoint, defencePoint)
 		{
 			GainExp = gainExp;
 		}

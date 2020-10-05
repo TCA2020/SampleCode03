@@ -6,11 +6,17 @@ namespace ConsoleQuest
 {
 	public class Character
 	{
+		public string Name
+		{ get; private set; }
+
 		public float MaxHP
 		{ get; private set; }
 
 		public float HP
 		{ get; private set; }
+
+		public bool IsAlive
+		{ get { return HP > 0; } }
 
 		public float AttackPoint
 		{ get; private set; }
@@ -19,8 +25,9 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 
-		public Character(float maxHP, float attackPoint, float defencePoint)
+		public Character(string name, float maxHP, float attackPoint, float defencePoint)
 		{
+			Name = name;
 			MaxHP = maxHP;
 			HP = maxHP;
 			AttackPoint = attackPoint;
