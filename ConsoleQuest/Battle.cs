@@ -44,6 +44,27 @@ namespace ConsoleQuest
 		}
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public enum BattleState
 	{
 		Win,
