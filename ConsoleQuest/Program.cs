@@ -8,7 +8,7 @@ namespace ConsoleQuest
 		{
 			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
 
-			Logger.Log("Start Game!");
+			Logger.Log("ゲームスタート!");
 
 
 			//create player
