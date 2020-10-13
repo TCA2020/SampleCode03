@@ -32,11 +32,11 @@ namespace ConsoleQuest
 			}
 
 			damage = BattleEnemy.Attack(BattlePlayer);
-			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
+			Logger.Log(BattleEnemy.Name + "has attacked " + BattlePlayer.Name + "has taken" + damage + "damage!");
 
 			if(!BattlePlayer.IsAlive)
 			{
-				Logger.Log(BattlePlayer.Name + "は倒れた...");
+				Logger.Log(BattlePlayer.Name + "has been defeated. . . ");
 				return BattleState.Lose;
 			}
 
