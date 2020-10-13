@@ -15,6 +15,7 @@ namespace ConsoleQuest
 			BattleEnemy = enemy;
 		}
 
+		///凄い出来だと思う。尊敬する
 		/// <summary>
 		/// ターンを進める
 		/// </summary>
