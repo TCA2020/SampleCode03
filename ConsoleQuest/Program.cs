@@ -11,6 +11,9 @@ namespace ConsoleQuest
 			Logger.Log("Start Game!");
 
 
+
+
+
 			//create player
 			Player player = new Player("プレイヤー", 100f, 10f, 5f, 1, 0);
 
