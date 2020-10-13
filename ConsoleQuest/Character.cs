@@ -15,6 +15,7 @@ namespace ConsoleQuest
 		public float HP
 		{ get; private set; }
 
+
 		public bool IsAlive
 		{ get { return HP > 0; } }
 
