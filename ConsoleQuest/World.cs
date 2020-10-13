@@ -14,6 +14,8 @@ namespace ConsoleQuest
 		}
 
 
+
+
 		public bool Loop()
 		{
 			//敵を生成
