@@ -25,6 +25,8 @@ namespace ConsoleQuest
 			}
 
 			//THE END
+
+
 			Logger.Log("game over.");
 		}
 	}
