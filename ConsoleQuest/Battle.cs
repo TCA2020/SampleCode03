@@ -12,6 +12,8 @@ namespace ConsoleQuest
 		public Battle(Player player, Enemy enemy)
 		{
 			BattlePlayer = player;
+
+
 			BattleEnemy = enemy;
 		}
 
