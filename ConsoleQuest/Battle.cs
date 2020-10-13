@@ -6,6 +6,7 @@ namespace ConsoleQuest
 {
 	public class Battle
 	{
+		int aaa;
 		private Player BattlePlayer;
 		private Enemy BattleEnemy;
 
