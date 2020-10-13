@@ -23,7 +23,7 @@ namespace ConsoleQuest
 				//Enter入力を待つ
 				Logger.ReadInput();
 			}
-
+			//hahahaha
 
 			Logger.Log("game over.");
 		}
