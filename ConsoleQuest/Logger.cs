@@ -48,7 +48,7 @@ namespace ConsoleQuest
 	{
 		public void Log(string log)
 		{
-			Console.WriteLine(log);
+			Console.WriteLine(log); //mark
 		}
 	}
 
