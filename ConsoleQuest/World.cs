@@ -34,6 +34,7 @@ namespace ConsoleQuest
 			while (battleState == BattleState.Continue);
 
 
+
 			//勝利ならループ継続
 			return battleState == BattleState.Win;
 		}
