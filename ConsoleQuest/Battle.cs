@@ -5,6 +5,7 @@ using System.Text;
 namespace ConsoleQuest
 {
 	public class Battle
+
 	{
 		private Player BattlePlayer;
 		private Enemy BattleEnemy;
