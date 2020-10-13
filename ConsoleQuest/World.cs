@@ -6,7 +6,7 @@ namespace ConsoleQuest
 {
 	public class World
 	{
-		private Player MyPlayer;
+		private Player MyPlayer;  //miha4406
 
 		public World(Player player)
 		{
