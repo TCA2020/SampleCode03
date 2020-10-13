@@ -22,6 +22,7 @@ namespace ConsoleQuest
 		public BattleState AdvanceTurn()
 		{
 			//プレイヤーと敵が殴り合う
+			//playerから敵への攻撃
 			float damage = BattlePlayer.Attack(BattleEnemy);
 			Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ！ Enemyの現在HP：" + BattleEnemy.HP);
 			
@@ -31,6 +32,7 @@ namespace ConsoleQuest
 				return BattleState.Win;
 			}
 
+			//敵からplayerへの攻撃
 			damage = BattleEnemy.Attack(BattlePlayer);
 			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ！ Playerの現在HP：" + BattlePlayer.HP);
 
