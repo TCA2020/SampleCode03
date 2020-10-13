@@ -10,9 +10,9 @@ namespace ConsoleQuest
 
 			Logger.Log("Start Game!");
 
-			Console.WriteLine("プレイヤーの名前を入力してください");
+			Logger.Log("プレイヤーの名前を入力してください");
 
-			string Playname = Console.ReadLine();
+			string Playname = Logger.ReadInput();
 
 			//create player
 			Player player = new Player(Playname, 100f, 10f, 5f, 1, 0);
