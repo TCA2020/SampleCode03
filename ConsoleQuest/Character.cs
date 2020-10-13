@@ -38,8 +38,8 @@ namespace ConsoleQuest
 		public float Attack(Character target)
 		{
 			float damage = DamageCalculator.CalculateDamage(this, target);
-
 			target.HP -= damage;
+
 			return damage;
 		}
 
