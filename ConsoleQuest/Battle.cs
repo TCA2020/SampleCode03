@@ -19,6 +19,7 @@ namespace ConsoleQuest
 		/// ターンを進める
 		/// </summary>
 		/// <returns>処理終了後のバトル状況</returns>
+		/// 
 		public BattleState AdvanceTurn()
 		{
 			//プレイヤーと敵が殴り合う
