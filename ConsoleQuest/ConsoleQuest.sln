@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleQuest", "ConsoleQuest.csproj", "{4E3BE7C3-7121-464A-8ECC-0608FFF3178B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleQuest", "ConsoleQuest.csproj", "{4E3BE7C3-7121-464A-8ECC-0608FFF3178B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_project", "..\Test_project\Test_project.csproj", "{E635A38A-A7A0-417C-B9D8-6F5124C602D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4E3BE7C3-7121-464A-8ECC-0608FFF3178B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E3BE7C3-7121-464A-8ECC-0608FFF3178B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E3BE7C3-7121-464A-8ECC-0608FFF3178B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E635A38A-A7A0-417C-B9D8-6F5124C602D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E635A38A-A7A0-417C-B9D8-6F5124C602D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E635A38A-A7A0-417C-B9D8-6F5124C602D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E635A38A-A7A0-417C-B9D8-6F5124C602D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

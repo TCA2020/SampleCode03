@@ -29,6 +29,8 @@ namespace ConsoleQuest
 			if(!BattleEnemy.IsAlive)
 			{
 				Logger.Log(BattleEnemy.Name + "を倒した！");
+				int exp = BattlePlayer.GetExp(BattleEnemy.GainExp);
+				Logger.Log(BattlePlayer.Name + "は経験値が" + exp +"になった！");
 				return BattleState.Win;
 			}
 

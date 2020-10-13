@@ -21,5 +21,13 @@ namespace ConsoleQuest
 			Exp = exp;
 		}
 
+		//経験値、レベルアップ処理
+		public int GetExp(int exp)
+		{
+			Exp += exp;
+			return Exp;
+			//if(Exp > 
+		}
+
 	}
 }
