@@ -10,7 +10,7 @@ namespace ConsoleQuest
 
 			Logger.Log("Start Game!");
 
-			Logger.Log("プレイヤーの名前を入力してください");
+			Logger.Log("Please enter desired PLAYER name");
 
 			string Playname = Logger.ReadInput();
 
