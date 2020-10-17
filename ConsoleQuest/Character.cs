@@ -32,6 +32,7 @@ namespace ConsoleQuest
 			HP = maxHP;
 			AttackPoint = attackPoint;
 			DefencePoint = defencePoint;
+	
 		}
 
 
