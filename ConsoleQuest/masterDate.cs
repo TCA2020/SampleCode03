@@ -13,7 +13,14 @@ namespace ConsoleQuest
         {
             for (int i = 1; i < cap + 1; i++)
             {
-                exptable[i - 1] = 6 * i - 25;
+                if (i >= 1 && i <= 10)
+                {
+                    exptable[i] = 4 * i + 1;
+                }
+                else
+                {
+                    exptable[i - 1] = 6 * i - 18;
+                }
             }
         }
     }
