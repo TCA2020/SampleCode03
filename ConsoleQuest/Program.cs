@@ -20,12 +20,42 @@ namespace ConsoleQuest
 
 			//create world
 			World world = new World(player);
+			
 
 			Logger.Log("select your action ! ");
 			Logger.Log(" 1. Battle   2. Shop  3. Rest  4. Save  5. Load");
 
 			int select = Convert.ToInt32(Logger.ReadInput());
 
+			switch (select)
+			{
+				case 1:
+					//worldが終了判定(false)を返すまでループ
+					while (world.Loop())
+					{
+						//Enter入力を待つ
+						Logger.ReadInput();
+					}
+					break;
+
+				case 2:
+					
+					
+
+					break;
+
+				case 3:
+					break;
+
+				case 4:
+					break;
+
+				case 5:
+					break;
+
+			}
+			Logger.Log("game over.");
+			/*
 			if (select == 1)
 			{
 				//worldが終了判定(false)を返すまでループ
@@ -38,11 +68,11 @@ namespace ConsoleQuest
 
 			if (select == 2)
             {
-				
-            }
 
+				Logger.Log("test");
+            }
+			*/
 			//THE END
-			Logger.Log("game over.");
 		}
 	}
 }

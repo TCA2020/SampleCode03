@@ -6,7 +6,8 @@ namespace ConsoleQuest
 {
     public class Shop
     {
-        public float shopping()
+       
+        public bool shop()
         {
             Logger.Log(" welcome to the shop ! ! ");
             Logger.Log("1. buy Potion  2. Leave ");
