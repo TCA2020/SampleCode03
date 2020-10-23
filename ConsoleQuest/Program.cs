@@ -12,7 +12,7 @@ namespace ConsoleQuest
 			string jsonPath=currentDerectory+"\\Player.txt";
 			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
 
-
+		
 
 			if ( !System.IO.File.Exists( jsonPath ) )
 			{
@@ -31,18 +31,17 @@ namespace ConsoleQuest
 				return;
 			}
 
-
-			Logger.Log("プレイヤーの名前を入力してください");
-
-			string Playname = Logger.ReadInput();
+			//Console.WriteLine(loadedPlayer.Playing);
 
 
 			if (loadedPlayer.Playing == 0)
 			{
-				//create player
-				Player player = new Player(Playname, 100f, 10f, 5f, 1, 1, 0, 20);
-
 				//create world
+				Logger.Log("プレイヤーの名前を入力してください");
+				string playname = Logger.ReadInput();
+
+				//create player
+				Player player = new Player(playname, 100f, 10f, 5f, 1, 1, 0, 20);
 				World world = new World(player);
 
 				//worldが終了判定(false)を返すまでループ
@@ -51,18 +50,14 @@ namespace ConsoleQuest
 					//Enter入力を待つ
 					Logger.ReadInput();
 				}
-
 			}
-			else {
+			else
+			{
 				Player player = loadedPlayer;
-
-				//create world
 				World world = new World(player);
 
-				//worldが終了判定(false)を返すまでループ
 				while (world.Loop())
 				{
-					//Enter入力を待つ
 					Logger.ReadInput();
 				}
 			}
@@ -70,24 +65,26 @@ namespace ConsoleQuest
 			Logger.Log("game over.");
 		}
 
-		private static void SavePlayerJson(Player date,string filePath )
+		private static void SavePlayerJson(Player data, string filePath)
 		{
-			string charajson=Newtonsoft.Json.JsonConvert.SerializeObject(date);
-			System.IO.File.WriteAllText(filePath,charajson);
+			string jsonText = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+			System.IO.File.WriteAllText(filePath, jsonText);
 		}
 
-		private static bool LoadPlayerJson(string filePath,out Player loadedInstance)
+		private static bool LoadPlayerJson(string filePath, out Player loadedInstance)
 		{
+			//ファイルが存在しない、Jsonフォーマットが正しくないなどの理由で
+			//ロードに失敗する可能性があるのでtry-catchを使う
 			try
 			{
-				string Charajson=System.IO.File.ReadAllText(filePath);
-				loadedInstance=Newtonsoft.Json.JsonConvert.DeserializeObject<Player>(Charajson);
+				string jsonText = System.IO.File.ReadAllText(filePath);
+				loadedInstance = Newtonsoft.Json.JsonConvert.DeserializeObject<Player>(jsonText);
 				return true;
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
-				Console.WriteLine("ロード失敗:"+e.Message);
-				loadedInstance=null;
+				Console.WriteLine("ロード失敗:" + e.Message);
+				loadedInstance = null;
 				return false;
 			}
 		}
@@ -96,7 +93,7 @@ namespace ConsoleQuest
 		//Json出力のため、最初に入れておくためのデータを作る
 		private static Player MakeDefaultData( )
 		{
-			Player player=new Player("プレイヤー", 100f, 10f, 5f,1, 1, 0,20);
+			Player player=new Player("プレイヤー", 100f, 10f, 5f,0, 1, 0,20);
 
 			return player;
 		}

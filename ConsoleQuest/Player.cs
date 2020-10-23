@@ -7,7 +7,7 @@ namespace ConsoleQuest
 	public class Player : Character
 	{
 
-		public int Playing
+		public float Playing
 		{ get; private set; }
 
 		public int Level
@@ -19,7 +19,7 @@ namespace ConsoleQuest
 		public float MaxExp
 		{ get; private set; }
 
-		public Player(string name, float maxHP, float atk, float def,int playing,
+		public Player(string name, float maxHP, float atk, float def,float playing,
 			int level, int exp,float maxexp)
 			: base(name, maxHP, atk, def)
 		{
