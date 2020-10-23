@@ -11,10 +11,6 @@ namespace ConsoleQuest
 
 			Logger.Log("Start Game!");
 
-			Logger.Log("プレイヤーの名前を入力してください");
-
-			string Playname = Logger.ReadInput();
-
 			string currentDerectory=System.IO.Directory.GetCurrentDirectory();
 			//currentDirectonryにjsonが置いてある前提
 			string jsonPath=currentDerectory+"\\Player.txt";
@@ -33,6 +29,13 @@ namespace ConsoleQuest
 				//ロードに失敗した
 				return;
 			}
+
+			Console.WriteLine(loadedPlayer.Name,loadedPlayer.MaxHP,loadedPlayer.HP,loadedPlayer.AttackPoint,loadedPlayer.DefencePoint,loadedPlayer.Level,loadedPlayer.Exp);
+
+			Logger.Log("プレイヤーの名前を入力してください");
+
+			string Playname = Logger.ReadInput();
+
 
 
 

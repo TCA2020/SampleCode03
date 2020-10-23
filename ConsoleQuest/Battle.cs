@@ -23,11 +23,13 @@ namespace ConsoleQuest
 		{
 			//プレイヤーと敵が殴り合う
 			float damage = BattlePlayer.Attack(BattleEnemy);
+			
 			Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
 			
 			if(!BattleEnemy.IsAlive)
 			{
 				Logger.Log(BattleEnemy.Name + "を倒した！");
+				float exp=BattlePlayer.LevelUp(BattlePlayer,BattleEnemy);
 				return BattleState.Win;
 			}
 

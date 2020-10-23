@@ -21,5 +21,17 @@ namespace ConsoleQuest
 			Exp = exp;
 		}
 
+		public float LevelUp(Player player,Enemy enemy )
+		{
+			player.Exp+=enemy.GainExp;
+			if ( player.Exp == 10 )
+			{
+				player.Level+=1;
+				Logger.Log(player.Name+"はLevel" +player.Level+"になった");
+
+			}
+			return Level;
+		}
+
 	}
 }

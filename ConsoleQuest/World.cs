@@ -17,11 +17,15 @@ namespace ConsoleQuest
 		public bool Loop()
 		{
 			//敵を生成
+			/*System.Random random = new Random();//敵のランダム出現
+                int j = random.Next(2) + 1;*/
 			Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
 			Logger.Log(enemy.Name + "が現れた！");
 
-			//敵とバトル
+
 			Battle battle = new Battle(MyPlayer, enemy);
+
+			//敵とバトル
 
 			BattleState battleState = BattleState.Continue;
 
