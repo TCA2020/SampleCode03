@@ -30,13 +30,13 @@ namespace ConsoleQuest
 				return;
 			}
 
-			Console.WriteLine(loadedPlayer.Name,loadedPlayer.MaxHP,loadedPlayer.HP,loadedPlayer.AttackPoint,loadedPlayer.DefencePoint,loadedPlayer.Level,loadedPlayer.Exp);
+			//Console.WriteLine(loadedPlayer.Name,loadedPlayer.MaxHP,loadedPlayer.HP,loadedPlayer.ATK,loadedPlayer.DEF,loadedPlayer.Level,loadedPlayer.Exp);
 
 			Logger.Log("プレイヤーの名前を入力してください");
 
 			string Playname = Logger.ReadInput();
 
-			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nMaxHP/HP:" + MyPlayer.MaxHP + "/" + MyPlayer.HP + "\n攻撃力:" + MyPlayer.AttackPoint + "防御力:" + MyPlayer.DefencePoint + "\n---------");
+
 
 
 			//create player

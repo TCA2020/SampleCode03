@@ -18,10 +18,10 @@ namespace ConsoleQuest
 		public bool IsAlive
 		{ get { return HP > 0; } }
 
-		public float AttackPoint
+		public float ATK
 		{ get; private set; }
 
-		public float DefencePoint
+		public float DEF
 		{ get; private set; }
 
 
@@ -30,8 +30,8 @@ namespace ConsoleQuest
 			Name = name;
 			MaxHP = maxHP;
 			HP = maxHP;
-			AttackPoint = attackPoint;
-			DefencePoint = defencePoint;
+			ATK = attackPoint;
+			DEF = defencePoint;
 		}
 
 

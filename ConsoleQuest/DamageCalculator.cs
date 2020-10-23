@@ -19,7 +19,7 @@ namespace ConsoleQuest
 		{
 			// ドラクエの計算式にならう
 			//（攻撃力/2-守備力/4）×乱数(7/8~9/8)
-			float damage = (attacker.AttackPoint / 2 - target.DefencePoint / 4) * (0.875f + (float)RandomGenerator.NextDouble() * 0.25f);
+			float damage = (attacker.ATK / 2 - target.DEF/ 4) * (0.875f + (float)RandomGenerator.NextDouble() * 0.25f);
 			//小数点切り捨て
 			damage = (float)Math.Floor(damage);
 			//最低ダメージ保証

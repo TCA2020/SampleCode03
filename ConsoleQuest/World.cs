@@ -17,7 +17,7 @@ namespace ConsoleQuest
 
 		public bool Loop()
 		{
-			
+			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nMaxHP/HP:" + MyPlayer.MaxHP + "/" + MyPlayer.HP + "\n攻撃力:" + MyPlayer.ATK + "防御力:" + MyPlayer.DEF+ "\n---------");
 			//敵を生成
 			/*System.Random random = new Random();//敵のランダム出現
                 int j = random.Next(2) + 1;*/
