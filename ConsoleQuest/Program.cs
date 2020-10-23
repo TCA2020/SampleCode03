@@ -16,6 +16,7 @@ namespace ConsoleQuest
 
 			if ( !System.IO.File.Exists( jsonPath ) )
 			{
+				Console.WriteLine("Jsonファイルが無いので、ダミーデータを元にJsonを生成して書き込みます...");
 				Player dummy=MakeDefaultData();
 				SavePlayerJson(dummy,jsonPath);
 			}
@@ -30,28 +31,41 @@ namespace ConsoleQuest
 				return;
 			}
 
-			//Console.WriteLine(loadedPlayer.Name,loadedPlayer.MaxHP,loadedPlayer.HP,loadedPlayer.ATK,loadedPlayer.DEF,loadedPlayer.Level,loadedPlayer.Exp);
 
 			Logger.Log("プレイヤーの名前を入力してください");
 
 			string Playname = Logger.ReadInput();
 
 
-
-
-			//create player
-			Player player = new Player(Playname, 100f, 10f, 5f, 1, 0,20);
-
-			//create world
-			World world = new World(player);
-
-			//worldが終了判定(false)を返すまでループ
-			while(world.Loop())
+			if (loadedPlayer.Playing == 0)
 			{
-				//Enter入力を待つ
-				Logger.ReadInput();
-			}
+				//create player
+				Player player = new Player(Playname, 100f, 10f, 5f, 1, 1, 0, 20);
 
+				//create world
+				World world = new World(player);
+
+				//worldが終了判定(false)を返すまでループ
+				while (world.Loop())
+				{
+					//Enter入力を待つ
+					Logger.ReadInput();
+				}
+
+			}
+			else {
+				Player player = loadedPlayer;
+
+				//create world
+				World world = new World(player);
+
+				//worldが終了判定(false)を返すまでループ
+				while (world.Loop())
+				{
+					//Enter入力を待つ
+					Logger.ReadInput();
+				}
+			}
 
 			Logger.Log("game over.");
 		}
@@ -82,7 +96,7 @@ namespace ConsoleQuest
 		//Json出力のため、最初に入れておくためのデータを作る
 		private static Player MakeDefaultData( )
 		{
-			Player player=new Player("プレイヤー", 100f, 10f, 5f, 1, 0,20);
+			Player player=new Player("プレイヤー", 100f, 10f, 5f,1, 1, 0,20);
 
 			return player;
 		}

@@ -24,14 +24,16 @@ namespace ConsoleQuest
 		public float DEF
 		{ get; private set; }
 
+		
 
-		public Character(string name, float maxHP, float attackPoint, float defencePoint)
+
+		public Character(string name, float maxHP, float atk, float def)
 		{
 			Name = name;
 			MaxHP = maxHP;
 			HP = maxHP;
-			ATK = attackPoint;
-			DEF = defencePoint;
+			ATK = atk;
+			DEF = def;
 		}
 
 
