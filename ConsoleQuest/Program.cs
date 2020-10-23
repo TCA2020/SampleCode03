@@ -27,7 +27,6 @@ namespace ConsoleQuest
 				//ロードに失敗した
 				return;
 			}
-			Console.WriteLine(loadedPlayer.Preing);
 
 			if (loadedPlayer.Preing == 0)
 			{
@@ -36,7 +35,7 @@ namespace ConsoleQuest
 				string Playname = Logger.ReadInput();
 
 				//create player
-				Player player = new Player(Playname, 100f, 10f, 5f, 1, 0, 1);
+				Player player = new Player(Playname, 100f, 10f, 5f, 1, 1, 0, 1, 0);
 				World world = new World(player);
 
 				//worldが終了判定(false)を返すまでループ
@@ -87,7 +86,7 @@ namespace ConsoleQuest
 
 		private static Player MakeDefaultData()
 		{
-			Player player = new Player("null", 100f, 10f, 5f, 0, 1, 0);
+			Player player = new Player("null", 100f, 10f, 5f, 0, 1, 0, 1, 0);
 
 
 			return player;

@@ -18,10 +18,10 @@ namespace ConsoleQuest
 		public bool IsAlive
 		{ get { return HP > 0; } }
 
-		public float AttackPoint
+		public float ATK
 		{ get; private set; }
 
-		public float DefencePoint
+		public float DEF
 		{ get; private set; }
 		public float Preing
 		{ get; private set; }
@@ -32,8 +32,8 @@ namespace ConsoleQuest
 			Name = name;
 			MaxHP = maxHP;
 			HP = maxHP;
-			AttackPoint = attackPoint;
-			DefencePoint = defencePoint;
+			ATK = attackPoint;
+			DEF = defencePoint;
 			Preing = praing;
 		}
 
@@ -45,10 +45,30 @@ namespace ConsoleQuest
 
 			return damage;
 		}
-
-		public void LevelUP()
+		
+		public float Defend_Attack(Character target)
 		{
+			float damage = DamageCalculator.DefendCalculateDamage(this, target);
+			target.HP -= damage;
+			return damage;
+		}
+		public float CharaHeal( Character player)
+		{
+			float healPoint = 0;
+			healPoint = player.MaxHP * (float)0.2;
+			player.HP = player.HP + healPoint;
+			if (player.HP > player.MaxHP)
+			{
+				player.HP = player.MaxHP;
+			}
+			return healPoint;
+		}
 
+		public void LevelUP(Character player)
+		{
+			player.MaxHP = MaxHP + 10;
+			player.ATK++;
+			player.DEF++;
 		}
 
 	}
