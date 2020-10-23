@@ -40,7 +40,7 @@ namespace ConsoleQuest
 
 
 			//create player
-			Player player = new Player(Playname, 100f, 10f, 5f, 1, 0);
+			Player player = new Player(Playname, 100f, 10f, 5f, 1, 0,20);
 
 			//create world
 			World world = new World(player);
@@ -82,7 +82,7 @@ namespace ConsoleQuest
 		//Json出力のため、最初に入れておくためのデータを作る
 		private static Player MakeDefaultData( )
 		{
-			Player player=new Player("プレイヤー", 100f, 10f, 5f, 1, 0);
+			Player player=new Player("プレイヤー", 100f, 10f, 5f, 1, 0,20);
 
 			return player;
 		}
