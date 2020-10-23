@@ -13,11 +13,11 @@ namespace ConsoleQuest
 		public int Exp
 		{ get; private set; }
 
-		public int MaxExp
+		public float MaxExp
 		{ get; private set; }
 
 		public Player(string name, float maxHP, float attackPoint, float defencePoint,
-			int level, int exp,int maxexp)
+			int level, int exp,float maxexp)
 			: base(name, maxHP, attackPoint, defencePoint)
 		{
 			Level = level;
@@ -33,6 +33,7 @@ namespace ConsoleQuest
 				player.Level+=1;
 				Logger.Log(player.Name+"はLevel" +player.Level+"になった");
 				player.Exp=0;
+				player.MaxExp *= 2;
 			}
 			return Level;
 		}

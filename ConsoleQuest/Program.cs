@@ -7,13 +7,12 @@ namespace ConsoleQuest
 	{
 		static void Main(string[] args)
 		{
-			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
-
-			Logger.Log("Start Game!");
-
 			string currentDerectory=System.IO.Directory.GetCurrentDirectory();
 			//currentDirectonryにjsonが置いてある前提
 			string jsonPath=currentDerectory+"\\Player.txt";
+			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
+
+
 
 			if ( !System.IO.File.Exists( jsonPath ) )
 			{
@@ -21,6 +20,7 @@ namespace ConsoleQuest
 				SavePlayerJson(dummy,jsonPath);
 			}
 
+			Logger.Log("Start Game!");
 
 			//	保存されているjsonデータをロードする
 			Player loadedPlayer;
@@ -36,7 +36,7 @@ namespace ConsoleQuest
 
 			string Playname = Logger.ReadInput();
 
-
+			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nMaxHP/HP:" + MyPlayer.MaxHP + "/" + MyPlayer.HP + "\n攻撃力:" + MyPlayer.AttackPoint + "防御力:" + MyPlayer.DefencePoint + "\n---------");
 
 
 			//create player

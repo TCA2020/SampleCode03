@@ -16,6 +16,22 @@ namespace ConsoleQuest
 			GainExp = gainExp;
 		}
 
+		public  EnemyBattle()
+        {
+			System.Random random = new Random();//敵のランダム出現
+			int j = random.Next(2) + 1;
+
+            if (j == 1)
+            {
+				Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
+            }
+            else
+            {
+				Enemy enemy = new Enemy("敵2", 30, 10, 2, 10);
+			}
+
+			return;
+		}
 
 	}
 }
