@@ -23,15 +23,18 @@ namespace ConsoleQuest
 
 		public float DefencePoint
 		{ get; private set; }
+		public float Preing
+		{ get; private set; }
 
 
-		public Character(string name, float maxHP, float attackPoint, float defencePoint)
+		public Character(string name, float maxHP, float attackPoint, float defencePoint, float praing)
 		{
 			Name = name;
 			MaxHP = maxHP;
 			HP = maxHP;
 			AttackPoint = attackPoint;
 			DefencePoint = defencePoint;
+			Preing = praing;
 		}
 
 
@@ -43,6 +46,10 @@ namespace ConsoleQuest
 			return damage;
 		}
 
+		public void LevelUP()
+		{
+
+		}
 
 	}
 }
