@@ -4,50 +4,54 @@ using System.Text;
 
 namespace ConsoleQuest
 {
-	public class Battle
-	{
-		private Player BattlePlayer;
-		private Enemy BattleEnemy;
+    public class Battle
+    {
+        private Player BattlePlayer;
+        private Enemy BattleEnemy;
 
-		public Battle(Player player, Enemy enemy)
-		{
-			BattlePlayer = player;
-			BattleEnemy = enemy;
-		}
+        public Battle(Player player,Enemy enemy)
+        {
+            BattlePlayer = player;
+            BattleEnemy = enemy;
+        }
 
-		/// <summary>
-		/// ターンを進める
-		/// </summary>
-		/// <returns>処理終了後のバトル状況</returns>
-		public BattleState AdvanceTurn()
-		{
-			//プレイヤーと敵が殴り合う
-			float damage = BattlePlayer.Attack(BattleEnemy);
-			Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
-			
-			if(!BattleEnemy.IsAlive)
-			{
-				Logger.Log(BattleEnemy.Name + "を倒した！");
-				return BattleState.Win;
-			}
+        /*<summary>*/
+        /*ターンを進める*/
+        /*</summary>*/
+        /*<returns>処理終了後のバトル状況</returns>*/
+        public BattleState AdvanceTurn()
+        {
+            /*プレイヤーと敵が殴り合う*/
+            float damage = BattlePlayer.Attack(BattleEnemy);
+            Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
+            
 
-			damage = BattleEnemy.Attack(BattlePlayer);
-			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
 
-			if(!BattlePlayer.IsAlive)
-			{
-				Logger.Log(BattlePlayer.Name + "は倒れた...");
-				return BattleState.Lose;
-			}
+            if(!BattleEnemy.IsAlive)
+            {
+                Logger.Log(BattleEnemy.Name + "を倒した！");
+                return BattleState.Win;
+            }
 
-			return BattleState.Continue;
-		}
-	}
+            damage = BattleEnemy.Attack(BattlePlayer);
+            Logger.Log(BattleEnemy.Name + "の攻撃" + BattlePlayer.Name + "に" + damage + "のダメージ");
+            Logger.Log("敵のHPは" + BattleEnemy.HP + "/" + BattleEnemy.MaxHP);
+            Logger.Log(BattlePlayer.Name + "のHPは"+BattlePlayer.HP+"/"+BattlePlayer.MaxHP);
 
-	public enum BattleState
-	{
-		Win,
-		Lose,
-		Continue,
-	}
+            if(!BattlePlayer.IsAlive)
+            {
+                Logger.Log(BattlePlayer.Name + "は倒れた…");
+                return BattleState.Lose;
+            }
+
+            return BattleState.Continue;
+        }
+    }
+
+    public enum BattleState
+    {
+        Win,
+        Lose,
+        Continue,
+    }
 }
