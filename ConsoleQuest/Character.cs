@@ -23,17 +23,25 @@ namespace ConsoleQuest
 
 		public float DEF
 		{ get; private set; }
+
+		public float MaxMP 
+		{ get; private set; }
+		public float MP 
+		{ get; private set; }
+
 		public float Preing
 		{ get; private set; }
 
 
-		public Character(string name, float maxHP, float attackPoint, float defencePoint, float praing)
+		public Character(string name, float maxHP, float atk, float def, float maxmp, float praing)
 		{
 			Name = name;
 			MaxHP = maxHP;
 			HP = maxHP;
-			ATK = attackPoint;
-			DEF = defencePoint;
+			ATK = atk;
+			DEF = def;
+			MaxMP = maxmp;
+			MP = maxmp;
 			Preing = praing;
 		}
 
@@ -45,10 +53,23 @@ namespace ConsoleQuest
 
 			return damage;
 		}
-		
-		public float Defend_Attack(Character target)
+
+		public float PowerAttack(Character target)
 		{
-			float damage = DamageCalculator.DefendCalculateDamage(this, target);
+			MP = MP - 10;
+			ATK = ATK * 2;
+			float damage = DamageCalculator.CalculateDamage(this, target);
+			ATK = ATK / 2;
+			target.HP = target.HP - damage;
+			return damage;
+		}
+
+		public float Defend(Character target)
+		{
+			target.DEF = target.DEF * 2;
+
+			float damage = DamageCalculator.CalculateDamage(this, target);
+			target.DEF = target.DEF / 2;
 			target.HP -= damage;
 			return damage;
 		}
@@ -64,11 +85,13 @@ namespace ConsoleQuest
 			return healPoint;
 		}
 
-		public void LevelUP(Character player)
+		public void LevelUP()
 		{
-			player.MaxHP = MaxHP + 10;
-			player.ATK++;
-			player.DEF++;
+			MaxHP = MaxHP + 10;
+			MaxMP = MaxMP + 10;
+			MP = MaxMP;
+			ATK++;
+			DEF++;
 		}
 
 	}

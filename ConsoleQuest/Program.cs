@@ -27,6 +27,8 @@ namespace ConsoleQuest
 				//ロードに失敗した
 				return;
 			}
+			Console.WriteLine(loadedPlayer.Name+" "+ loadedPlayer.MaxHP+ " "+loadedPlayer.ATK+ " "+loadedPlayer.DEF+ " "+loadedPlayer.MaxMP+ " "+loadedPlayer.Preing+
+					" "+loadedPlayer.Level+ " "+loadedPlayer.Exp+ " "+loadedPlayer.HealNum+ " "+loadedPlayer.Coin+" " +loadedPlayer.Next);
 
 			if (loadedPlayer.Preing == 0)
 			{
@@ -35,7 +37,7 @@ namespace ConsoleQuest
 				string Playname = Logger.ReadInput();
 
 				//create player
-				Player player = new Player(Playname, 100f, 10f, 5f, 1, 1, 0, 1, 0);
+				Player player = new Player(Playname, 100f, 10f, 5f, 10f, 1f, 1, 0f, 1f, 0f, 10f);
 				World world = new World(player);
 
 				//worldが終了判定(false)を返すまでループ
@@ -47,8 +49,9 @@ namespace ConsoleQuest
 			}
 			else
 			{
-				Player player = loadedPlayer;
-				World world = new World(player);
+				Player saveplayer = new Player(loadedPlayer.Name,loadedPlayer.MaxHP,loadedPlayer.ATK,loadedPlayer.DEF,loadedPlayer.MaxMP,loadedPlayer.Preing,
+					loadedPlayer.Level,loadedPlayer.Exp,loadedPlayer.HealNum,loadedPlayer.Coin,loadedPlayer.Next);
+				World world = new World(saveplayer);
 
 				while (world.Loop())
 				{
@@ -86,7 +89,7 @@ namespace ConsoleQuest
 
 		private static Player MakeDefaultData()
 		{
-			Player player = new Player("null", 100f, 10f, 5f, 0, 1, 0, 1, 0);
+			Player player = new Player("null", 100f, 10f, 5f, 10f, 0f, 1, 0f, 1f, 0f, 10f);
 
 
 			return player;

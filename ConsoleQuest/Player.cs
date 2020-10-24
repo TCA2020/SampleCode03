@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Text;
 
 namespace ConsoleQuest
@@ -11,6 +13,8 @@ namespace ConsoleQuest
 		public int Level
 		{ get; private set; }
 
+		public double Next 
+		{ get; private set; }
 		public float Exp
 		{ get; private set; }
 
@@ -21,18 +25,16 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 
-		public Player(string name, float maxHP, float attackPoint, float defencePoint, float preing,
-			int level, float exp,float heal,float coin)
-			: base(name, maxHP, attackPoint, defencePoint, preing)
+		public Player(string name, float maxHP, float atk, float def, float maxmp, float preing,
+			int level, float exp,float heal,float coin,double next)
+			: base(name, maxHP, atk, def, maxmp , preing)
 		{
 			Level = level;
+			Next = next;
 			Exp = exp;
 			HealNum = heal;
 			Coin = coin;
 		}
-
-		float Before = 0;
-		double next = 10;
 		public float Heal(Character player )
 		{
 			float healPoint = 0;
@@ -50,22 +52,20 @@ namespace ConsoleQuest
 		public bool EXPCall(Enemy target)
 		{
 			//必要経験値の上昇
-			if (Level > 1)
-			{
 				
-				Before = (float)next;
-
-				next = Math.Floor(Before * (float)1.1);
-			}
 			Exp += target.GainExp;
 			//レベルアップの有無
-			if (Exp >= next)
+			if (Exp >= Next)
 			{
 				Logger.Log("レベルアップ\n");
-				Exp = Exp - (float)next;
+				this.Exp = this.Exp - (float)Next;
 				Level++;
-				Logger.Log(Exp);
+				Logger.Log(this.Exp);
 				Logger.Log("Lv" + (Level - 1) + "->Lv" + Level);
+
+				float Before = (float)Next;
+
+				Next = Math.Floor(Before * (float)1.1);
 				return true;
 			}
 			else

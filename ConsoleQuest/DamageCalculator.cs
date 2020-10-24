@@ -27,12 +27,5 @@ namespace ConsoleQuest
 
 			return damage;
 		}
-		public static float DefendCalculateDamage(Character attacker,Character target)
-		{
-			float damage = (attacker.ATK / 2 - target.DEF / 2) * (0.875f + (float)RandomGenerator.NextDouble() * 0.25f);
-			if (damage < 1f) damage = 1f;
-			damage = (float)Math.Floor(damage);
-			return damage;
-		}
 	}
 }
