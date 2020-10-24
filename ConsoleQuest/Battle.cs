@@ -31,6 +31,20 @@ namespace ConsoleQuest
 				Logger.Log(BattleEnemy.Name + "を倒した！");
 				int exp = BattlePlayer.GetExp(BattleEnemy.GainExp);
 				Logger.Log(BattlePlayer.Name + "は経験値が" + exp +"になった！");
+
+				if(BattlePlayer.LvUp())
+				{
+					Logger.Log(BattlePlayer.Name + "はレベルが" + BattlePlayer.Level + "になった！");
+					Logger.Log(BattlePlayer.Name + "おめでとうレベルアップだ！");
+
+					//レベルアップしたときHPを回復する
+					float HealValue = BattlePlayer.HPheal(BattlePlayer.HP, BattlePlayer.MaxHP);
+					damage = BattlePlayer.Hphealing(BattlePlayer,HealValue);
+				}
+				else{
+					//処理なし
+				}
+
 				return BattleState.Win;
 			}
 

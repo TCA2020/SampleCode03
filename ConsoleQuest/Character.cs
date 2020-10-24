@@ -43,6 +43,12 @@ namespace ConsoleQuest
 			return damage;
 		}
 
+		public float Hphealing(Character target,float heal)
+		{
+
+			target.HP = heal;
+			return heal;
+		}
 
 	}
 }

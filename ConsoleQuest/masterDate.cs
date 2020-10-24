@@ -6,21 +6,30 @@ namespace ConsoleQuest
 {
     class masterDate
     {
-        const int cap = 30;
-        int[] exptable = new int[cap];
-        
-         void Getexptable()
+        public static int Exptable(int Lv)
         {
-            for (int i = 1; i < cap + 1; i++)
+            const int cap = 30;
+            int[] exptable = new int[cap];
+
+
+                for (int i = 1; i < cap + 1; i++)
+                {
+                    if (i >= 1 && i <= 10)
+                    {
+                        exptable[i] = 4 * i + 1;
+                    }
+                    else
+                    {
+                        exptable[i - 1] = 6 * i - 18;
+                    }
+                }
+            if (Lv <= cap || Lv >= 0)
             {
-                if (i >= 1 && i <= 10)
-                {
-                    exptable[i] = 4 * i + 1;
-                }
-                else
-                {
-                    exptable[i - 1] = 6 * i - 18;
-                }
+                return exptable[Lv];
+            }
+            else
+            {
+                return 0;
             }
         }
     }
