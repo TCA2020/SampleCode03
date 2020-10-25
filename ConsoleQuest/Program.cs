@@ -27,8 +27,6 @@ namespace ConsoleQuest
 				//ロードに失敗した
 				return;
 			}
-			Console.WriteLine(loadedPlayer.Name+" "+ loadedPlayer.MaxHP+ " "+loadedPlayer.ATK+ " "+loadedPlayer.DEF+ " "+loadedPlayer.MaxMP+ " "+loadedPlayer.Preing+
-					" "+loadedPlayer.Level+ " "+loadedPlayer.Exp+ " "+loadedPlayer.HealNum+ " "+loadedPlayer.Coin+" " +loadedPlayer.Next);
 
 			if (loadedPlayer.Preing == 0)
 			{

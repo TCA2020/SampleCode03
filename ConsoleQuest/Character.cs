@@ -88,10 +88,20 @@ namespace ConsoleQuest
 		public void LevelUP()
 		{
 			MaxHP = MaxHP + 10;
-			MaxMP = MaxMP + 10;
+			MaxMP = MaxMP + 2;
 			MP = MaxMP;
 			ATK++;
 			DEF++;
+		}
+
+		public void EnemyUP()
+		{
+			MaxHP = MaxHP + 40;
+			HP = MaxHP;
+			MaxMP = MaxMP + 20;
+			MP = MaxMP;
+			ATK = ATK + 7;
+			DEF = DEF + 3;
 		}
 
 	}

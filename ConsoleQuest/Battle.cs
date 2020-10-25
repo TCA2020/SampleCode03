@@ -30,7 +30,7 @@ namespace ConsoleQuest
 
 			switch (action_num) {
 				case 1:
-					//プレイヤーと敵が殴り合う
+					//playerの攻撃
 					float damage = BattlePlayer.Attack(BattleEnemy);
 
 					Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
@@ -42,27 +42,16 @@ namespace ConsoleQuest
 						Logger.Log(BattleEnemy.GainCoin + "Gを手に入れた");
 
 						//経験値計算とレベルアップ
-						if (BattlePlayer.EXPCall(BattleEnemy))
-						{
-							BattlePlayer.LevelUP();
-						}
+						BattlePlayer.EXPCall(BattleEnemy);
+					
 
 
 						return BattleState.Win;
 			        }
-
-			damage = BattleEnemy.Attack(BattlePlayer);
-
-			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
-
-			if(!BattlePlayer.IsAlive)
-			{
-				Logger.Log(BattlePlayer.Name + "は倒れた...");
-				return BattleState.Lose;
-			}
 					break;
 
 				case 2:
+					//player強攻撃
 					if(BattlePlayer.MP >= 10)
 					{
 						damage = BattlePlayer.PowerAttack(BattleEnemy);
@@ -77,23 +66,10 @@ namespace ConsoleQuest
 							Logger.Log(BattleEnemy.GainCoin + "Gを手に入れた");
 
 							//経験値計算とレベルアップ
-							if (BattlePlayer.EXPCall(BattleEnemy))
-							{
-								BattlePlayer.LevelUP();
-							}
+							BattlePlayer.EXPCall(BattleEnemy);
 
 
 							return BattleState.Win;
-						}
-
-						damage = BattleEnemy.Attack(BattlePlayer);
-
-						Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
-
-						if (!BattlePlayer.IsAlive)
-						{
-							Logger.Log(BattlePlayer.Name + "は倒れた...");
-							return BattleState.Lose;
 						}
 					}
 					else
@@ -126,20 +102,30 @@ namespace ConsoleQuest
 						healPoint = BattlePlayer.Heal(BattlePlayer);
 						Logger.Log(healPoint + "回復した");
 
-						damage = BattleEnemy.Attack(BattlePlayer);
-						Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
-
-						if (!BattlePlayer.IsAlive)
-						{
-							Logger.Log(BattlePlayer.Name + "は倒れた...");
-							return BattleState.Lose;
-						}
 					}
 					else
 					{
 						Logger.Log("回復薬が足りないようだ");
+						return BattleState.Continue;
 					}
 					break;
+				default:
+					Logger.Log("該当数値を入力してください");
+					return BattleState.Continue;
+			}
+
+			//enemyの攻撃
+			if (action_num != 3)
+			{
+				float damage = BattleEnemy.Attack(BattlePlayer);
+
+				Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
+
+				if (!BattlePlayer.IsAlive)
+				{
+					Logger.Log(BattlePlayer.Name + "は倒れた...");
+					return BattleState.Lose;
+				}
 			}
 
 			return BattleState.Continue;

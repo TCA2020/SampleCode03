@@ -20,6 +20,13 @@ namespace ConsoleQuest
 			GainCoin = gainCoin;
 		}
 
+		public void LvUpEnemy()
+		{
+			GainCoin = GainCoin + 10;
+			GainExp = GainExp + 5;
+			EnemyUP();
+		}
+
 
 	}
 }

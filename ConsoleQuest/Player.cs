@@ -26,13 +26,13 @@ namespace ConsoleQuest
 
 
 		public Player(string name, float maxHP, float atk, float def, float maxmp, float preing,
-			int level, float exp,float heal,float coin,double next)
+			int level, float exp,float healnum,float coin,double next)
 			: base(name, maxHP, atk, def, maxmp , preing)
 		{
 			Level = level;
 			Next = next;
 			Exp = exp;
-			HealNum = heal;
+			HealNum = healnum;
 			Coin = coin;
 		}
 		public float Heal(Character player )
@@ -49,7 +49,7 @@ namespace ConsoleQuest
 			Coin += enemy.GainCoin;
 		}
 
-		public bool EXPCall(Enemy target)
+		public void EXPCall(Enemy target)
 		{
 			//必要経験値の上昇
 				
@@ -58,19 +58,16 @@ namespace ConsoleQuest
 			if (Exp >= Next)
 			{
 				Logger.Log("レベルアップ\n");
-				this.Exp = this.Exp - (float)Next;
+				Exp = Exp - (float)Next;
 				Level++;
-				Logger.Log(this.Exp);
+				Logger.Log(Exp);
 				Logger.Log("Lv" + (Level - 1) + "->Lv" + Level);
+				//ステータス上昇
+				LevelUP();
 
 				float Before = (float)Next;
 
 				Next = Math.Floor(Before * (float)1.1);
-				return true;
-			}
-			else
-			{
-				return false;
 			}
 		}
 

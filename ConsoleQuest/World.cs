@@ -37,6 +37,20 @@ namespace ConsoleQuest
 				case 2:
 					//敵を生成
 					Enemy enemy = new Enemy("敵", 30, 10, 2, 10, 0, 10, 10);
+					
+					//敵のレベルアップ
+					int playerLv = MyPlayer.Level;
+					
+					for(int i = 0; i < MyPlayer.Level; i = i + 5)
+					{
+
+						if (playerLv % 5 == 0)
+						{
+							enemy.LvUpEnemy();
+							playerLv = playerLv - 5;
+						}
+					}
+
 					Logger.Log(enemy.Name + "が現れた！");
 
 					//敵とバトル
