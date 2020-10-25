@@ -12,46 +12,52 @@ namespace ConsoleQuest
 
 			string jsonPath = currentDirectory + "\\playerData.json";
 
-			string Playname;
-
-			int num;
-
 			Logger.Log("Start Game!");
-
-			Logger.Log("新しく始めますか:0\n続きから始めますか:1");
-
-			string start = Logger.ReadInput();
-
-			int.TryParse(start, out num);
 
 			Player player;
 
-			if (num == 0)
-			{
+            while (true)
+            {
+				Logger.Log("新しく始めますか:0\n続きから始めますか:1");
 
-				Logger.Log("プレイヤーの名前を入力してください");
+				var start = Logger.ReadInput();
+                if (int.TryParse(start, out var num))
+                {
+					if (num == 0)
+					{
 
-				Playname = Logger.ReadInput();
+						Logger.Log("プレイヤーの名前を入力してください");
 
-				//create player
-				player = new Player(Playname, 100f, 10f, 5f, 1, 0);
+						var Playname = Logger.ReadInput();
 
-				Logger.Log("プレイヤーデータを生成します");
-				Logger.Log("出力先:" + jsonPath);
+						//create player
+						player = new Player(Playname, 100f, 10f, 5f, 1, 0);
 
-				SaveUserJson(player, jsonPath);
-			}
-			else if (num == 1)
-			{
-				Player loadedData;
-				if (!LoadUserJson(jsonPath, out loadedData))
-				{
-					return;
+						Logger.Log("プレイヤーデータを生成します");
+						Logger.Log("出力先:" + jsonPath);
+
+						SaveUserJson(player, jsonPath);
+
+						break;
+					}
+					else if (num == 1)
+					{
+						Player loadedData;
+						if (!LoadUserJson(jsonPath, out loadedData))
+						{
+							return;
+						}
+						Console.WriteLine(loadedData.MaxHP.ToString(), loadedData.AttackPoint.ToString(),
+							loadedData.Level.ToString());
+
+						player = loadedData;
+
+						break;
+					}
 				}
-				Console.WriteLine(loadedData.MaxHP.ToString(), loadedData.AttackPoint.ToString(),
-					loadedData.Level.ToString());
-
-				player = loadedData;
+				Logger.Log("0か1以外が入力されました");
+				Logger.Log("もう一度入力してください");
+				
 			}
 
 			//create world
