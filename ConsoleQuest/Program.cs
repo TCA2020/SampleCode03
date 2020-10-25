@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ConsoleQuest
 {
@@ -6,6 +7,8 @@ namespace ConsoleQuest
 	{
 		static void Main(string[] args)
 		{
+			//string path = @"C:\Users\student\Desktop\123.txt";
+			string path = @"C:\Users\yuri6\Desktop\YUN\123.txt";
 
 			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
 
@@ -21,39 +24,54 @@ namespace ConsoleQuest
 			//create world
 			World world = new World(player);
 			
+			
+
+			while(true){
 
 			Logger.Log("select your action ! ");
 			Logger.Log(" 1. Battle   2. Shop  3. Rest  4. Save  5. Load");
 
 			int select = Convert.ToInt32(Logger.ReadInput());
 
-			switch (select)
-			{
-				case 1:
-					//worldが終了判定(false)を返すまでループ
-					while (world.Loop())
-					{
-						//Enter入力を待つ
-						Logger.ReadInput();
-					}
-					break;
+				switch (select)
+				{
+					case 1:
+						//worldが終了判定(false)を返すまでループ
+						while (world.Loop())
+						{
+							//Enter入力を待つ
+							Logger.ReadInput();
+						}
+						break;
 
-				case 2:
-					
-					
+					case 2:
+						
 
-					break;
 
-				case 3:
-					break;
+						break;
 
-				case 4:
-					break;
+					case 3:
+						break;
 
-				case 5:
-					break;
+					case 4:
 
+						string saveplayer = Newtonsoft.Json.JsonConvert.SerializeObject(player);
+						System.IO.File.WriteAllText(path, saveplayer);
+
+						Console.WriteLine(saveplayer);
+
+						break;
+
+					case 5:
+						string loadplayer = System.IO.File.ReadAllText(path);
+
+
+						break;
+
+				}
 			}
+
+
 			Logger.Log("game over.");
 			/*
 			if (select == 1)
