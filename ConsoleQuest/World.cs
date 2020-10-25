@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ConsoleQuest
@@ -13,12 +14,16 @@ namespace ConsoleQuest
 			MyPlayer = player;
 		}
 
-
 		public bool Loop()
 		{
 			//敵を生成
-			Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
-			Logger.Log(enemy.Name + "が現れた！");
+			Random r1 = new System.Random();
+            switch (r1.Next(0,5)) {
+				case 0:
+					Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
+					Logger.Log(enemy.Name + "が現れた！");
+					break;
+			}
 
 			//敵とバトル
 			Battle battle = new Battle(MyPlayer, enemy);

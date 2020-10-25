@@ -7,7 +7,6 @@ namespace ConsoleQuest
 {
 	public class Player : Character
 	{
-
 		public int Level
 		{ get; private set; }
 
@@ -32,10 +31,17 @@ namespace ConsoleQuest
 		public bool LvUp()
         {
 			bool tf = true;
-			if (Exp >= masterDate.Exptable(Level))
+			if (Level <= 30)
 			{
-				Level++;
-				Exp = 0;
+				if (Exp >= masterDate.Exptable(Level))
+				{
+					Level++;
+					Exp = 0;
+				}
+				else
+				{
+					tf = false;
+				}
             }
             else
             {
@@ -47,7 +53,7 @@ namespace ConsoleQuest
 		//HPを最大HPの4分の1回復する
 		public float HPheal(float hp,float maxhp)
         {
-			float heal = hp + (float)Math.Round((maxhp / 1));
+			float heal = hp + (float)Math.Round((maxhp / 4));
 			return heal ;
 		}
 
