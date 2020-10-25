@@ -34,8 +34,8 @@ namespace ConsoleQuest
 
 				if(BattlePlayer.LvUp())
 				{
-					Logger.Log(BattlePlayer.Name + "はレベルが" + BattlePlayer.Level + "になった！");
 					Logger.Log(BattlePlayer.Name + "おめでとうレベルアップだ！");
+					Logger.Log(BattlePlayer.Name + "はレベルが" + BattlePlayer.Level + "になった！");
 
 					//レベルアップしたときHPを回復する
 					float HealValue = BattlePlayer.HPheal(BattlePlayer.HP, BattlePlayer.MaxHP);

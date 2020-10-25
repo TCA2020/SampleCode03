@@ -35,14 +35,19 @@ namespace ConsoleQuest
 			if (Exp >= masterDate.Exptable(Level))
 			{
 				Level++;
-			}
+				Exp = 0;
+            }
+            else
+            {
+				tf = false;
+            }
 			return tf;
 		}
 
 		//HPを最大HPの4分の1回復する
 		public float HPheal(float hp,float maxhp)
         {
-			float heal = hp + (float)Math.Round((maxhp / 4));
+			float heal = hp + (float)Math.Round((maxhp / 1));
 			return heal ;
 		}
 
