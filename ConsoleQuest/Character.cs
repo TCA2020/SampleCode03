@@ -6,24 +6,27 @@ namespace ConsoleQuest
 {
 	public class Character
 	{
+		
+
 		public string Name
-		{ get; private set; }
+		{ get;  set; }
 
 		public float MaxHP
-		{ get; private set; }
+		{ get;  set; }
 
 		public float HP
-		{ get; private set; }
+		{ get;  set; }
 
 		public bool IsAlive
 		{ get { return HP > 0; } }
 
 		public float AttackPoint
-		{ get; private set; }
+		{ get;  set; }
 
 		public float DefencePoint
-		{ get; private set; }
+		{ get;  set; }
 
+		
 
 		public Character(string name, float maxHP, float attackPoint, float defencePoint)
 		{
@@ -32,6 +35,7 @@ namespace ConsoleQuest
 			HP = maxHP;
 			AttackPoint = attackPoint;
 			DefencePoint = defencePoint;
+			
 		}
 
 
@@ -43,6 +47,22 @@ namespace ConsoleQuest
 			return damage;
 		}
 
+		
+	}
 
+	public class Weapon
+	{
+		public string Name;
+		public float WATK
+		{ get; set; }
+		public int Price;
+
+		public Weapon(string name,float watk,int price)
+		{
+			Name = name;
+			WATK = watk;
+			Price = price;
+		}
+		
 	}
 }

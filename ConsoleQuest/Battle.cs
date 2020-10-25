@@ -28,6 +28,7 @@ namespace ConsoleQuest
 			if(!BattleEnemy.IsAlive)
 			{
 				Logger.Log(BattleEnemy.Name + "を倒した！");
+				BattlePlayer.PlayerChoice(BattlePlayer.Choice());
 				return BattleState.Win;
 			}
 

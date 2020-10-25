@@ -17,6 +17,8 @@ namespace ConsoleQuest
 		/// <returns>ダメージ値</returns>
 		public static float CalculateDamage(Character attacker, Character target)
 		{
+			
+			
 			// ドラクエの計算式にならう
 			//（攻撃力/2-守備力/4）×乱数(7/8~9/8)
 			float damage = (attacker.AttackPoint / 2 - target.DefencePoint / 4) * (0.875f + (float)RandomGenerator.NextDouble() * 0.25f);
