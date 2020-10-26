@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -62,13 +63,15 @@ namespace ConsoleQuest
 		}
 
 		//キャラデータ出力
-		public string ExportJson(string Export)
+		public bool ExportJson()
         {
+			bool tof = true;
+
+			Program Export = new Program();
+			Export.SaveUserJson(Player data, string path);
 
 
-			//Export = Newtonsoft.Json.JsonConvert.SerializeObject();
-
-			return Export;
+			return tof;
         }
 
 	}

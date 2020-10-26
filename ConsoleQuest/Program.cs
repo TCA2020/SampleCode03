@@ -48,7 +48,7 @@ namespace ConsoleQuest
 							return;
 						}
 						Console.WriteLine(loadedData.MaxHP.ToString(), loadedData.AttackPoint.ToString(),
-							loadedData.Level.ToString());
+							 loadedData.Level.ToString(),loadedData.Exp.ToString());
 
 						player = loadedData;
 
@@ -74,7 +74,7 @@ namespace ConsoleQuest
 			Logger.Log("game over.");
 		}
 
-		private static void SaveUserJson(Player data, string path)
+		static void SaveUserJson(Player data, string path)
 		{
 			string jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(data);
 			System.IO.File.WriteAllText(path, jsontext);
