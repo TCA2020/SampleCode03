@@ -39,7 +39,7 @@ namespace ConsoleQuest
 					
 					//レベルアップしたときHPを回復する
 					float HealValue = BattlePlayer.HPheal(BattlePlayer.HP, BattlePlayer.MaxHP);
-					damage = BattlePlayer.Hphealing(BattlePlayer, HealValue);
+					BattlePlayer.Hphealing(BattlePlayer, HealValue);
 				}
 
 				return BattleState.Win;

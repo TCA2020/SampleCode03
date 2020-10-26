@@ -54,6 +54,10 @@ namespace ConsoleQuest
 		public float HPheal(float hp,float maxhp)
         {
 			float heal = hp + (float)Math.Round((maxhp / 4));
+			if(heal >= maxhp)
+			{
+				heal = 100;
+			}
 			return heal ;
 		}
 

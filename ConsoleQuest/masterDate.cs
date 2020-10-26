@@ -51,7 +51,7 @@ namespace ConsoleQuest
                         line = sr.ReadLine();
                         // 読み込んだ一行をカンマ毎に分けて配列に格納する
                         values = line.Split(',');
-                        int x = 0;
+                        int x = 1;
                         while (x >= values.Length)
                         {
                             
