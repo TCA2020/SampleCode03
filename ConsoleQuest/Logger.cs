@@ -8,7 +8,10 @@ namespace ConsoleQuest
 	{
 		private static ILogger LoggerInstance;
 		private static IInput InputInstance;
-
+		public static void ClearLog(){ 
+			
+		 Console.Clear();
+			}
 		public static void Inject(ILogger logger, IInput input)
 		{
 			LoggerInstance = logger;
@@ -48,7 +51,7 @@ namespace ConsoleQuest
 	{
 		public void Log(string log)
 		{
-			Console.WriteLine(log); //mark
+			Console.WriteLine(log);
 		}
 	}
 
@@ -59,4 +62,5 @@ namespace ConsoleQuest
 			return Console.ReadLine();
 		}
 	}
+
 }

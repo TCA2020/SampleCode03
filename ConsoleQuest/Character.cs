@@ -7,23 +7,27 @@ namespace ConsoleQuest
 	public class Character
 	{
 		public string Name
-		{ get; private set; }
+		{ get; set; }
 
 		public float MaxHP
-		{ get; private set; }
+		{ get; set; }
 
 		public float HP
-		{ get; private set; }
+		{ get; set; }
 
 		public bool IsAlive
 		{ get { return HP > 0; } }
 
 		public float AttackPoint
-		{ get; private set; }
+		{ get; set; }
 
 		public float DefencePoint
-		{ get; private set; }
+		{ get; set; }
 
+		public Character()
+		{
+
+		}
 
 		public Character(string name, float maxHP, float attackPoint, float defencePoint)
 		{
@@ -38,8 +42,8 @@ namespace ConsoleQuest
 		public float Attack(Character target)
 		{
 			float damage = DamageCalculator.CalculateDamage(this, target);
-
 			target.HP -= damage;
+
 			return damage;
 		}
 
