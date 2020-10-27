@@ -39,7 +39,7 @@ namespace ConsoleQuest
 					{
 						Logger.Log(BattleEnemy.Name + "を倒した！");
 						//経験値取得&レベルアップ
-						BattlePlayer.EXPCalc(BattleEnemy);
+						BattlePlayer.EXPCalc(BattleEnemy);	  
 
 						return BattleState.Win;
 					}
@@ -63,6 +63,7 @@ namespace ConsoleQuest
                     }
                     else
                     {
+						
 						Logger.Log("MPが足りません。");
 						return BattleState.Continue;
                     }
