@@ -17,31 +17,51 @@ namespace ConsoleQuest
 
 		public bool Loop()
 		{
-			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nMaxHP/HP:" + MyPlayer.MaxHP + "/" + MyPlayer.HP + "\n攻撃力:" + MyPlayer.ATK + "防御力:" + MyPlayer.DEF+ "\n---------");
-			//敵を生成
-			/*System.Random random = new Random();//敵のランダム出現
-                int j = random.Next(2) + 1;*/
-			Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
-			Logger.Log(enemy.Name + "が現れた！");
-
-
-			Battle battle = new Battle(MyPlayer, enemy);
-
-			//敵とバトル
-
+			int action = 0;
 			BattleState battleState = BattleState.Continue;
+			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level+"\nHP:" + MyPlayer.HP + "/" + MyPlayer.MaxHP + "\nMP:" + MyPlayer.MP + "/" + MyPlayer.MaxMP + "\n攻撃力:" + MyPlayer.ATK + "\n防御力:" + MyPlayer.DEF);
+			Logger.Log("-----行動-----\n1=経験値確認\n2=戦闘\n3=セーブ");
+			action = int.Parse(Console.ReadLine());
 
-			do
-			{
-				battleState = battle.AdvanceTurn();
+            switch (action)
+            {
+				case 1:
+					Logger.Log("EXP" + MyPlayer.Exp +"/"+ MyPlayer.MaxExp); 
+					return battleState == BattleState.Continue;
 
-				Logger.ReadInput();
+				case 2:
+
+					Enemy enemy = new Enemy("敵", 30, 10, 2,10,15);
+					Logger.Log(enemy.Name + "が現れた！");
+
+
+					Battle battle = new Battle(MyPlayer, enemy);
+
+					//敵とバトル
+
+					do
+					{
+						battleState = battle.AdvanceTurn();
+
+						Logger.ReadInput();
+					}
+					while (battleState == BattleState.Continue);
+					break;
+				case 3:
+					Logger.Log("セーブしました。");
+					//セーブ
+					System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "\\Player.txt", Newtonsoft.Json.JsonConvert.SerializeObject(MyPlayer));
+
+					return battleState == BattleState.Continue;
+
+				default:
+					Logger.Log("該当の値を入れてください。");
+					return battleState == BattleState.Continue;
 			}
-			while (battleState == BattleState.Continue);
 
 
 			//勝利ならループ継続
-			return battleState == BattleState.Win;
+			return battleState == BattleState.Win|| battleState == BattleState.Escape;
 		}
 
 

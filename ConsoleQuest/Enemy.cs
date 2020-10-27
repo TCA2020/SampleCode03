@@ -9,9 +9,9 @@ namespace ConsoleQuest
 		public int GainExp
 		{ get; private set; }
 
-		public Enemy(string name, float maxHP, float attackPoint, float defencePoint,
+		public Enemy(string name, float maxHP, float atk, float def, float maxMP,
 			int gainExp)
-			: base(name, maxHP, attackPoint, defencePoint)
+			: base(name, maxHP, atk, def, maxMP)
 		{
 			GainExp = gainExp;
 		}
@@ -23,11 +23,11 @@ namespace ConsoleQuest
 
             if (j == 1)
             {
-				Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
+				Enemy enemy = new Enemy("敵", 30, 10, 2, 10,10);
             }
             else
             {
-				Enemy enemy = new Enemy("敵2", 30, 10, 2, 10);
+				Enemy enemy = new Enemy("敵2", 30, 10, 2, 10,10);
 			}
 
 		}
