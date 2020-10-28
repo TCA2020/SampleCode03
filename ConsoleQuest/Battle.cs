@@ -23,20 +23,20 @@ namespace ConsoleQuest
 		{
 			//プレイヤーと敵が殴り合う
 			float damage = BattlePlayer.Attack(BattleEnemy);
-			Logger.Log(BattlePlayer.Name + " has attacked" + BattleEnemy.Name + " has taken " + damage + " damage ");
+			Logger.Log(BattlePlayer.Name + " has attacked !! " + BattleEnemy.Name + " has taken " + damage + " damage ");
 			
 			if(!BattleEnemy.IsAlive)
 			{
-				Logger.Log(BattleEnemy.Name + " has won the battle ! ");
+				Logger.Log(BattleEnemy.Name + " has been defeated . . . ");
 				return BattleState.Win;
 			}
 
 			damage = BattleEnemy.Attack(BattlePlayer);
-			Logger.Log(BattleEnemy.Name + " has attacked " + BattlePlayer.Name + " has taken " + damage + " damage ");
+			Logger.Log(BattleEnemy.Name + " has attacked !! " + BattlePlayer.Name + " has taken " + damage + " damage ");
 
 			if(!BattlePlayer.IsAlive)
 			{
-				Logger.Log(BattlePlayer.Name + " has been defeated . . . ");
+				Logger.Log(BattlePlayer.Name + " has won the battle !");
 				return BattleState.Lose;
 			}
 

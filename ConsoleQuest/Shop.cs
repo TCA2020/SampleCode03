@@ -8,7 +8,7 @@ namespace ConsoleQuest
     public class Shop
     {
        
-        public bool shop()
+        /*public  shop()
         {
             Logger.Log(" welcome to the shop ! ! ");
             Logger.Log("1. buy Potion  2. Leave ");
@@ -26,6 +26,6 @@ namespace ConsoleQuest
             {
                 Logger.Log(" GoodBye !");
             }
-        }
+        }*/
     }
 }
