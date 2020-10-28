@@ -9,9 +9,9 @@ namespace ConsoleQuest
 		public int GainExp
 		{ get; private set; }
 
-		public Enemy(string name, float maxHP, float attackPoint, float defencePoint,
+		public Enemy(string name, float maxHP, float hp, float attackPoint, float defencePoint,
 			int gainExp)
-			: base(name, maxHP, attackPoint, defencePoint)
+			: base(name, maxHP, hp, attackPoint, defencePoint)
 		{
 			GainExp = gainExp;
 		}

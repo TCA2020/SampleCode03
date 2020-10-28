@@ -20,19 +20,27 @@ namespace ConsoleQuest
 
 			//create player
 
-			Player player = new Player(Playname, 100f, 10f, 5f, 1, 0, 0);
+			Player player = new Player(Playname, 100f, 100f, 10f, 5f, 1, 0, 0);
+
 			//create world
+
+			while(true){
+			World world = new World(player);
 			//World world = new World(player);
 			
 			
 
-			while(true){
-				/*
-				 Logger.Log("Player Information : ");
-				string loadplayer = Newtonsoft.Json.JsonConvert.SerializeObject(player);
-				Console.WriteLine(loadplayer);
-				*/
-				World world = new World(player);
+				Logger.Log(" ");
+				Logger.Log(" ");
+				Logger.Log(" ");
+				Logger.Log(" ");
+				Logger.Log(" ");
+				//Logger.Log("Player Information : " + Player(player));
+				
+				string currentplayer = Newtonsoft.Json.JsonConvert.SerializeObject(player);
+				Console.WriteLine(currentplayer);
+				
+				
 				Logger.Log("select your action ! ");
 				Logger.Log(" 1. Battle   2. Shop  3. Rest  4. Save  5. Load");
 
@@ -50,9 +58,6 @@ namespace ConsoleQuest
 						break;
 
 					case 2:
-						
-
-
 						break;
 
 					case 3:
@@ -74,12 +79,10 @@ namespace ConsoleQuest
 
 
 
+
+						player = new Player(playerloaded.Name, playerloaded.MaxHP, playerloaded.HP,playerloaded.AttackPoint,playerloaded.DefencePoint,playerloaded.Level,playerloaded.Exp,playerloaded.Potion);
+
 						Logger.Log(loadplayer);
-						float playerloaded1 = float.Parse(loadplayer);
-						int playerloaded2 = Int32.Parse(loadplayer);
-
-						player = new Player(loadplayer, playerloaded1, playerloaded1, playerloaded1, playerloaded2, playerloaded2, playerloaded2);
-
 
 						break;
 

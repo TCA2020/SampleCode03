@@ -16,9 +16,9 @@ namespace ConsoleQuest
 		public float Potion
 		{ get; private set; }
 
-		public Player(string name, float maxHP, float attackPoint, float defencePoint,
+		public Player(string name, float maxHP,float hp, float attackPoint, float defencePoint,
 			int level, int exp, float potion)
-			: base(name, maxHP, attackPoint, defencePoint)
+			: base(name, maxHP, hp, attackPoint, defencePoint)
 		{
 			Potion = potion;
 			Level = level;

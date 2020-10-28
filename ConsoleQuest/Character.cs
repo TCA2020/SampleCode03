@@ -25,11 +25,11 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 
-		public Character(string name, float maxHP, float attackPoint, float defencePoint)
+		public Character(string name, float maxHP, float hp, float attackPoint, float defencePoint)
 		{
 			Name = name;
 			MaxHP = maxHP;
-			HP = maxHP;
+			HP = hp;
 			AttackPoint = attackPoint;
 			DefencePoint = defencePoint;
 	
