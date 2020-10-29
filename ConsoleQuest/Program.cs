@@ -66,6 +66,7 @@ namespace ConsoleQuest
 			//worldが終了判定(false)を返すまでループ
 			while (world.Loop())
 			{
+
 				//Enter入力を待つ
 				Logger.ReadInput();
 			}

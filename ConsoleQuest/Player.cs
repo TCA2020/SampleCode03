@@ -68,7 +68,7 @@ namespace ConsoleQuest
 			bool tof = true;
 
 			Program Export = new Program();
-			Export.SaveUserJson(Player data, string path);
+			//Export.SaveUserJson(Player data, string path);
 
 
 			return tof;
