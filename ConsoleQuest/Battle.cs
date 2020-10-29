@@ -39,7 +39,8 @@ namespace ConsoleQuest
 					{
 						Logger.Log(BattleEnemy.Name + "を倒した！");
 						//経験値取得&レベルアップ
-						BattlePlayer.EXPCalc(BattleEnemy);	  
+						BattlePlayer.EXPCalc(BattleEnemy);
+						BattlePlayer.GoldCalc(BattleEnemy);
 
 						return BattleState.Win;
 					}
@@ -57,6 +58,7 @@ namespace ConsoleQuest
 							Logger.Log(BattleEnemy.Name + "を倒した！");
 							//経験値取得&レベルアップ
 							BattlePlayer.EXPCalc(BattleEnemy);
+							BattlePlayer.GoldCalc(BattleEnemy);
 
 							return BattleState.Win;
 						}
@@ -101,7 +103,6 @@ namespace ConsoleQuest
 
 
 			}
-			//プレイヤーと敵が殴り合う
 			
 
 			damage = BattleEnemy.NormalAttack(BattlePlayer);

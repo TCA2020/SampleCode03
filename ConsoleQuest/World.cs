@@ -19,9 +19,10 @@ namespace ConsoleQuest
 		{
 			int action = 0;
 			BattleState battleState = BattleState.Continue;
+			Cityarea cityarea = Cityarea.Continue;
 			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nHP:" + MyPlayer.HP + "/" + MyPlayer.MaxHP + "\nMP:" + MyPlayer.MP + "/" + MyPlayer.MaxMP
 				+ "\n攻撃力:" + MyPlayer.ATK + "\n防御力:" + MyPlayer.DEF + "\n所持アイテム:" + MyPlayer.Item + "\n所持金" + MyPlayer.Gold + "G");
-			Logger.Log("-----行動-----\n1=経験値確認\n2=戦闘\n3=セーブ");
+			Logger.Log("-----行動-----\n1=経験値確認\n2=戦闘\n3=街に行く\n4=セーブ");
 			action = int.Parse(Console.ReadLine());
 
             switch (action)
@@ -48,7 +49,21 @@ namespace ConsoleQuest
 					}
 					while (battleState == BattleState.Continue);
 					break;
+
 				case 3:
+					Logger.Log("街に来た。");
+
+					City city = new City(MyPlayer);
+					do
+					{
+						cityarea = city.ActionTurn();
+
+						Logger.ReadInput();
+					}
+					while (cityarea == Cityarea.Continue);
+					break;
+
+				case 4:
 					Logger.Log("セーブしました。");
 					//セーブ
 					System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "\\Player.txt", Newtonsoft.Json.JsonConvert.SerializeObject(MyPlayer));
@@ -62,7 +77,7 @@ namespace ConsoleQuest
 
 
 			//勝利ならループ継続
-			return battleState == BattleState.Win|| battleState == BattleState.Escape;
+			return battleState == BattleState.Win|| battleState == BattleState.Escape || cityarea == Cityarea.finish;
 		}
 
 

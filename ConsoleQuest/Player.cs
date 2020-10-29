@@ -69,6 +69,7 @@ namespace ConsoleQuest
 			Gold += target.GainGold;
         }
 
+
 		/*public void Shop()
         {
 			int action = 0;
