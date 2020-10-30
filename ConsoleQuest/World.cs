@@ -35,8 +35,26 @@ namespace ConsoleQuest
 					return battleState == BattleState.Continue;
 
 				case 2:
+					Random md = new System.Random();
+					int num = md.Next(6);
+					Enemy enemy = new Enemy("ダミー",0,0,0,0,0,0,0);
 					//敵を生成
-					Enemy enemy = new Enemy("敵", 30, 10, 2, 10, 0, 10, 10);
+					switch (num) 
+					{
+						case 0:
+						case 1:
+						case 2:
+							enemy = new Enemy("スライム", 20, 10, 2, 10, 0, 10, 10);
+							break;
+						case 3:
+						case 4:
+							enemy = new Enemy("ゴブリン", 35, 13, 3, 10, 0, 15, 15);
+							break;
+						case 5:
+							enemy = new Enemy("オーク", 50, 15, 5, 10, 0, 30, 30);
+							break;
+					
+					}
 					
 					//敵のレベルアップ
 					int playerLv = MyPlayer.Level;
