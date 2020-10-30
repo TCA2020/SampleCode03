@@ -17,20 +17,22 @@ namespace ConsoleQuest
 
 		public bool Loop()
 		{
+			Console.Clear();
 			int action_num = 0;
 			BattleState battleState = BattleState.Continue;
-			Logger.Log(MyPlayer.Name +"\nLv"+MyPlayer.Level+ " HP:"+MyPlayer.HP +"/"+ MyPlayer.MaxHP+" MP:"+MyPlayer.MP+"/"+MyPlayer.MaxMP+"\nお金:"+MyPlayer.Coin+"G");
 			Logger.Log("何をしますか\n1= ステータス表示 \n2 = 移動(敵とバトル)\n3 = 回復薬使用  回復薬所持数:" + MyPlayer.HealNum + "\n4 = 回復薬購入　50G\n5 = セーブ");
 			action_num = int.Parse(Console.ReadLine());
 
 			switch (action_num)
 			{
 				case 1:
+					Console.Clear();
 					Logger.Log("ステータス");
 					Logger.Log("Name:" + MyPlayer.Name+ " Lv" + MyPlayer.Level);
 					Logger.Log("EXP:" + MyPlayer.Exp + "/" + MyPlayer.Next);
 					Logger.Log("HP:" + MyPlayer.HP+"/"+MyPlayer.MaxHP +" MP:"+MyPlayer.MP+"/"+MyPlayer.MaxMP);
 					Logger.Log("ATK:" + MyPlayer.ATK + " DEF:" + MyPlayer.DEF);
+					Logger.Log("お金:" + MyPlayer.Coin + "G");
 
 					return battleState == BattleState.Continue;
 
@@ -69,6 +71,8 @@ namespace ConsoleQuest
 						}
 					}
 
+					Console.Clear();
+
 					Logger.Log(enemy.Name + "が現れた！");
 
 					//敵とバトル
@@ -86,10 +90,10 @@ namespace ConsoleQuest
 
 				case 3:
 					//回復薬使用
+					Console.Clear();
 					if(MyPlayer.HealNum > 0)
 					{
 						MyPlayer.Heal(MyPlayer);
-						Logger.Log("回復薬で回復しました");
 					}
 					else
 					{
@@ -100,6 +104,7 @@ namespace ConsoleQuest
 
 				case 4:
 					//回復薬購入
+					Console.Clear();
 					if (MyPlayer.Coin >= 50)
 					{
 						MyPlayer.GetHeal();
@@ -114,6 +119,7 @@ namespace ConsoleQuest
 
 				case 5:
 					//save
+					Console.Clear();
 					Logger.Log("セーブしました。");
 					System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "\\player.json", Newtonsoft.Json.JsonConvert.SerializeObject(MyPlayer));
 					return battleState == BattleState.Continue;

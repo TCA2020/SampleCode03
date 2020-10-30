@@ -31,6 +31,7 @@ namespace ConsoleQuest
 			switch (action_num) {
 				case 1:
 					//playerの攻撃
+					Console.Clear();
 					float damage = BattlePlayer.Attack(BattleEnemy);
 
 					Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
@@ -39,6 +40,7 @@ namespace ConsoleQuest
 					{
 						Logger.Log(BattleEnemy.Name + "を倒した！");
 						BattlePlayer.GetCoin(BattleEnemy);
+						Logger.Log("経験値" + BattleEnemy.GainExp + "を手に入れた");
 						Logger.Log(BattleEnemy.GainCoin + "Gを手に入れた");
 
 						//経験値計算とレベルアップ
@@ -52,6 +54,7 @@ namespace ConsoleQuest
 
 				case 2:
 					//player強攻撃
+					Console.Clear();
 					if(BattlePlayer.MP >= 10)
 					{
 						damage = BattlePlayer.PowerAttack(BattleEnemy);
@@ -81,7 +84,8 @@ namespace ConsoleQuest
 					break;
 
 				case 3:
-　　　　　　　　　　//player防御
+					//player防御
+					Console.Clear();
 					Logger.Log("守りの体制に入った");
 					damage = BattleEnemy.Defend(BattlePlayer);
 					Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
@@ -95,12 +99,11 @@ namespace ConsoleQuest
 
 				case 4:
 					//回復薬使用
+					Console.Clear();
 					if(BattlePlayer.HealNum > 0)
 					{
-						float healPoint = 0;
 						Logger.Log("回復薬を使った");
-						healPoint = BattlePlayer.Heal(BattlePlayer);
-						Logger.Log(healPoint + "回復した");
+                        BattlePlayer.Heal(BattlePlayer);
 
 					}
 					else

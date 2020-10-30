@@ -73,16 +73,17 @@ namespace ConsoleQuest
 			target.HP -= damage;
 			return damage;
 		}
-		public float CharaHeal( Character player)
+		public void CharaHeal( Character player)
 		{
-			float healPoint = 0;
-			healPoint = player.MaxHP * (float)0.2;
-			player.HP = player.HP + healPoint;
+			double healPoint = 0;
+			healPoint = Math.Truncate( player.MaxHP * 0.4);
+
+			player.HP = player.HP + (float)healPoint;
 			if (player.HP > player.MaxHP)
 			{
 				player.HP = player.MaxHP;
 			}
-			return healPoint;
+			Logger.Log(player.Name + "は" + healPoint + "回復した");
 		}
 
 		public void LevelUP()

@@ -35,13 +35,11 @@ namespace ConsoleQuest
 			HealNum = healnum;
 			Coin = coin;
 		}
-		public float Heal(Character player )
+		public void Heal(Character player )
 		{
-			float healPoint = 0;
 			HealNum--;
-			healPoint = player.CharaHeal(player);
+			player.CharaHeal(player);
 
-			return healPoint;
 		}
 
 		public void GetCoin(Enemy enemy)
@@ -51,23 +49,32 @@ namespace ConsoleQuest
 
 		public void EXPCall(Enemy target)
 		{
-			//必要経験値の上昇
-				
+			//経験値の付与
 			Exp += target.GainExp;
 			//レベルアップの有無
 			if (Exp >= Next)
 			{
-				Logger.Log("レベルアップ\n");
-				Exp = Exp - (float)Next;
-				Level++;
-				Logger.Log(Exp);
-				Logger.Log("Lv" + (Level - 1) + "->Lv" + Level);
-				//ステータス上昇
-				LevelUP();
+				LevelSystem();
+			}
+		}
 
-				float Before = (float)Next;
+		public void LevelSystem()
+		{
+			Logger.Log("レベルアップ\n");
+			Level++;
+			Logger.Log("Lv" + (Level - 1) + "->Lv" + Level);
+			//ステータス上昇
+			LevelUP();
 
-				Next = Math.Floor(Before * (float)1.1);
+			float Before = (float)Next;
+			Exp = Exp - Before;
+
+			//必要経験値の上昇
+			Next = Math.Truncate(Before * (float)1.3);
+			//レベルアップの有無
+			if (Exp >= Next)
+			{
+				LevelSystem();
 			}
 		}
 
