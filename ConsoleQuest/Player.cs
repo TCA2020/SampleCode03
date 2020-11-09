@@ -30,12 +30,12 @@ namespace ConsoleQuest
 			{
 				if (i < 10)
 				{
-					exptable[i] = (i + 1) * 15 - 3;
+					exptable[i] = (i + 1) * 12 - 2;
 
 				}
 				else if (i > 10)
 				{
-					exptable[i] = (i + 1) * 20;
+					exptable[i] = (i + 1) * 15;
 
 				}
 			}
