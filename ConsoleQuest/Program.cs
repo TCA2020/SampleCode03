@@ -10,11 +10,15 @@ namespace ConsoleQuest
 
 			string currentDirectory = System.IO.Directory.GetCurrentDirectory();
 
-			string jsonPath = currentDirectory + "\\playerData.json";
+			string jsonPath = currentDirectory + "\\playerData.text";
+
+			string enemyPath = currentDirectory + "\\enemyData.text";
 
 			Logger.Log("Start Game!");
 
 			Player player;
+
+			//JsonEnemy(enemyPath);
 
             while (true)
             {
@@ -61,18 +65,21 @@ namespace ConsoleQuest
 			}
 
 			//create world
-			World world = new World(player);
+			World world = new World(player,EnemyLoad(enemyPath));
 
 			//worldが終了判定(false)を返すまでループ
 			while (world.Loop())
 			{
 				//Enter入力を待つ
 				Logger.ReadInput();
+
+
 			}
 
 			//THE END
 			Logger.Log("game over.");
 		}
+
 
 		private static void SaveUserJson(Player data, string path)
 		{
@@ -95,5 +102,40 @@ namespace ConsoleQuest
 				return false;
 			}
 		}
+
+		private static Enemy[] EnemyLoad(string path)
+		{
+
+			Enemy[] loadEnemy = new Enemy[3];
+
+			string jsontext = System.IO.File.ReadAllText(path);
+
+			loadEnemy = Newtonsoft.Json.JsonConvert
+				.DeserializeObject < Enemy[] > (jsontext);
+
+			return loadEnemy;
+		}
+
+		/*
+		public static void CreateEnemyJson(string jsontext,string path)
+		{
+			System.IO.File.WriteAllText(path, jsontext);
+		}
+
+		static void JsonEnemy(string path)
+		{
+			Enemy[] enemy = new Enemy[3];
+
+			enemy[0] = new Enemy("敵1", 30, 10, 2, 10);
+
+			enemy[1] = new Enemy("敵2", 50, 5, 3, 20);
+
+			enemy[2] = new Enemy("敵3", 10, 20, 1, 20);
+
+			string enemytext = Newtonsoft.Json.JsonConvert.SerializeObject(enemy);
+
+			CreateEnemyJson(enemytext, path);
+		}
+		*/
 	}
 }

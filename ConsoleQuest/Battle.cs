@@ -30,6 +30,10 @@ namespace ConsoleQuest
 				Logger.Log(BattleEnemy.Name + "を倒した！");
 				return BattleState.Win;
 			}
+			else
+			{
+				Logger.Log("敵の残りHP:" + BattleEnemy.HP);
+			}
 
 			damage = BattleEnemy.Attack(BattlePlayer);
 			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
@@ -38,6 +42,10 @@ namespace ConsoleQuest
 			{
 				Logger.Log(BattlePlayer.Name + "は倒れた...");
 				return BattleState.Lose;
+			}
+			else
+			{
+				Logger.Log(BattlePlayer.Name + "の残りHP:" + BattlePlayer.HP);
 			}
 
 			return BattleState.Continue;

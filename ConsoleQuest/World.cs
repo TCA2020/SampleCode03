@@ -8,20 +8,27 @@ namespace ConsoleQuest
 	{
 		private Player MyPlayer;
 
-		public World(Player player)
+		private Enemy[] loadEnemy;
+
+		Random enemypop = new Random();
+
+		public World(Player player,Enemy[] load)
 		{
 			MyPlayer = player;
-		}
 
+			loadEnemy = load;
+		}
 
 		public bool Loop()
 		{
 			//敵を生成
-			Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
-			Logger.Log(enemy.Name + "が現れた！");
+			Enemy enemy = loadEnemy[enemypop.Next(0, 3)];
+			Enemy copyEnemy = enemy;
+
+			Logger.Log(copyEnemy.Name + "が現れた！");
 
 			//敵とバトル
-			Battle battle = new Battle(MyPlayer, enemy);
+			Battle battle = new Battle(MyPlayer, copyEnemy);
 
 			BattleState battleState = BattleState.Continue;
 
