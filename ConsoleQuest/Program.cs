@@ -47,6 +47,9 @@ namespace ConsoleQuest
 						{
 							return;
 						}
+						if (loadedData.IsAlive) {
+							loadedData.deathheal();
+						}
 						Console.WriteLine(loadedData.MaxHP.ToString(), loadedData.AttackPoint.ToString(),
 							 loadedData.Level.ToString(),loadedData.Exp.ToString());
 
@@ -66,13 +69,33 @@ namespace ConsoleQuest
 			//worldが終了判定(false)を返すまでループ
 			while (world.Loop())
 			{
-
-				//Enter入力を待つ
-				Logger.ReadInput();
+				//THE END
+				Logger.Log("game over.");
 			}
+			while (true)
+			{
+				Logger.Log("今回のプレイデータを保存しますか？:0\n保存せず破棄しますか？:1");
 
-			//THE END
-			Logger.Log("game over.");
+				var start = Logger.ReadInput();
+				if (int.TryParse(start, out var num))
+				{
+					if (num == 0)
+					{ 
+						SavePlayer(player,jsonPath);
+						Console.WriteLine("プレイデータを保存しました。");
+						break;
+					} else if (num == 1)
+					{
+						Console.WriteLine("今回のプレイデータを破棄しました。");
+						break;
+					}
+				}
+				Logger.Log("0か1以外が入力されました");
+				Logger.Log("もう一度入力してください");
+
+			}
+			//Enter入力を待つ
+			Logger.ReadInput();
 		}
 
 		static void SaveUserJson(Player data, string path)
@@ -96,5 +119,23 @@ namespace ConsoleQuest
 				return false;
 			}
 		}
+
+		private static void SavePlayer(Player player,string JsonPath)
+		{
+			SaveDate saveDate = new SaveDate();
+			saveDate.Player = new PlayerSaveDate();
+
+			saveDate.Player.Name = player.Name;
+			saveDate.Player.maxHP = player.MaxHP;
+			saveDate.Player.AttackPoint = player.AttackPoint;
+			saveDate.Player.Difencepoint = player.DefencePoint;
+			saveDate.Player.level = player.Level;
+			saveDate.Player.Exp = player.Exp;
+
+			string jsonDate = Newtonsoft.Json.JsonConvert.SerializeObject(saveDate);
+			System.IO.File.WriteAllText(JsonPath, jsonDate);
+
+		}
+
 	}
 }

@@ -62,6 +62,14 @@ namespace ConsoleQuest
 			return heal ;
 		}
 
+		/*public Player(PlayerSaveDate date)
+			:base(date.Name,date.maxHP,date.AttackPoint,date.Difencepoint)
+		{
+			Level = date.level;
+			Exp = date.Exp;
+			HP = date.maxHP;
+		}*/
+
 		//キャラデータ出力
 		public bool ExportJson()
         {
@@ -73,6 +81,9 @@ namespace ConsoleQuest
 
 			return tof;
         }
-
+		public float deathheal()
+		{
+			return this.HP = this.MaxHP;
+		}
 	}
 }

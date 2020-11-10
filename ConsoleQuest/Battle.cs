@@ -52,6 +52,7 @@ namespace ConsoleQuest
 			if(!BattlePlayer.IsAlive)
 			{
 				Logger.Log(BattlePlayer.Name + "は倒れた...");
+				BattlePlayer.deathheal();
 				return BattleState.Lose;
 			}
 
