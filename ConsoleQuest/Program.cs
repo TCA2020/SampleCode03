@@ -8,7 +8,7 @@ namespace ConsoleQuest
 		static void Main(string[] args)
 		{
 			//string path = @"C:\Users\student\Desktop\123.txt";
-			string path = @"C:\Users\yuri6\Desktop\YUN\123.txt";
+			string path = System.IO.Directory.GetCurrentDirectory() + "\\123.txt";
 
 			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
 
