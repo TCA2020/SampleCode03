@@ -63,8 +63,10 @@ namespace ConsoleQuest
 					Logger.ReadInput();
 				}
 			}
-
-			Logger.Log("game over.");
+			if (loadedPlayer.IsAlive == false)
+			{
+				Logger.Log("game over.");
+			}
 		}
 
 		private static void SavePlayerJson(Player data, string filePath)

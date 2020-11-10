@@ -20,7 +20,7 @@ namespace ConsoleQuest
             action = int.Parse(Console.ReadLine());
             switch (action)
             {
-                case 1:
+                case 1:   //宿屋
                     Logger.Log("宿屋へようこそ\n一泊30Gです。お泊りになりますか？\n1=はい\n2=いいえ");
                     int Y_action = int.Parse(Console.ReadLine());
                     if (Y_action == 1)

@@ -18,6 +18,7 @@ namespace ConsoleQuest
 		public bool Loop()
 		{
 			int action = 0;
+			int action2 = 0;
 			BattleState battleState = BattleState.Continue;
 			Cityarea cityarea = Cityarea.Continue;
 			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nHP:" + MyPlayer.HP + "/" + MyPlayer.MaxHP + "\nMP:" + MyPlayer.MP + "/" + MyPlayer.MaxMP
@@ -68,7 +69,21 @@ namespace ConsoleQuest
 					//セーブ
 					System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "\\Player.txt", Newtonsoft.Json.JsonConvert.SerializeObject(MyPlayer));
 
-					return battleState == BattleState.Continue;
+					Logger.Log("ゲームを終了しますか\nはい=1\nいいえ=2");
+					action2 = int.Parse(Console.ReadLine());
+					switch (action2)
+					{
+						case 1:
+							Logger.Log("ゲームを終了します。");
+							return battleState == BattleState.Lose;
+
+						case 2:
+							Logger.Log("ゲームを続けます。");
+							return battleState == BattleState.Continue;
+
+					}
+					break;
+
 
 				default:
 					Logger.Log("該当の値を入れてください。");
