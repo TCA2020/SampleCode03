@@ -13,7 +13,7 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 		public float HP
-		{ get; private set; }
+		{ get; protected set; }
 
 		public bool IsAlive
 		{ get { return HP > 0; } }

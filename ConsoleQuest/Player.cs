@@ -21,5 +21,12 @@ namespace ConsoleQuest
 			Exp = exp;
 		}
 
+		public Player(PlayerSaveData data)
+			:base(data.Name, data.MaxHP, data.AttackPoint, data.DefencePoint)
+		{
+			Level = data.Level;
+			Exp = data.Exp;
+			HP = data.HP;
+		}
 	}
 }
