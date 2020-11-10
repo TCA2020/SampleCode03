@@ -25,9 +25,9 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 
-		public Player(string name, float maxHP, float atk, float def, float maxmp, float preing,
+		public Player(string name, float maxHP,float hp, float atk, float def, float maxmp,float mp, float preing,
 			int level, float exp,float healnum,float coin,double next)
-			: base(name, maxHP, atk, def, maxmp , preing)
+			: base(name, maxHP,hp, atk, def, maxmp, mp , preing)
 		{
 			Level = level;
 			Next = next;

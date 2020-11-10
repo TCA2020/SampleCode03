@@ -22,21 +22,22 @@ namespace ConsoleQuest
 		public BattleState AdvanceTurn()
 		{
 			int action_num = 0;
-			Logger.Log( BattlePlayer.Name+"  HP:"+BattlePlayer.HP+"/"+BattlePlayer.MaxHP+"  MP:"+BattlePlayer.MP+"/"+BattlePlayer.MaxMP);
+			Logger.Log(BattlePlayer.Name + "  HP:" + BattlePlayer.HP + "/" + BattlePlayer.MaxHP + "  MP:" + BattlePlayer.MP + "/" + BattlePlayer.MaxMP);
 			Logger.Log(BattleEnemy.Name + " HP:" + BattleEnemy.HP + "/" + BattleEnemy.MaxHP);
 			Logger.Log("行動入力 1:攻撃　2:強攻撃:消費MP10  3:防御 4:回復薬使用 \n回復薬所持数:" + BattlePlayer.HealNum);
-			action_num = int.Parse(Console.ReadLine());
+			action_num = inMoveNum();
 
 
-			switch (action_num) {
+			switch (action_num)
+			{
 				case 1:
 					//playerの攻撃
 					Console.Clear();
 					float damage = BattlePlayer.Attack(BattleEnemy);
 
 					Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
-			
-					if(!BattleEnemy.IsAlive)
+
+					if (!BattleEnemy.IsAlive)
 					{
 						Logger.Log(BattleEnemy.Name + "を倒した！");
 						BattlePlayer.GetCoin(BattleEnemy);
@@ -45,17 +46,17 @@ namespace ConsoleQuest
 
 						//経験値計算とレベルアップ
 						BattlePlayer.EXPCall(BattleEnemy);
-					
+
 
 
 						return BattleState.Win;
-			        }
+					}
 					break;
 
 				case 2:
 					//player強攻撃
 					Console.Clear();
-					if(BattlePlayer.MP >= 10)
+					if (BattlePlayer.MP >= 10)
 					{
 						damage = BattlePlayer.PowerAttack(BattleEnemy);
 
@@ -100,10 +101,10 @@ namespace ConsoleQuest
 				case 4:
 					//回復薬使用
 					Console.Clear();
-					if(BattlePlayer.HealNum > 0)
+					if (BattlePlayer.HealNum > 0)
 					{
 						Logger.Log("回復薬を使った");
-                        BattlePlayer.Heal(BattlePlayer);
+						BattlePlayer.Heal(BattlePlayer);
 
 					}
 					else
@@ -113,7 +114,8 @@ namespace ConsoleQuest
 					}
 					break;
 				default:
-					Logger.Log("該当数値を入力してください");
+					Console.Clear();
+					Logger.Log("該当数値を入力してください\nEnterで戻る");
 					return BattleState.Continue;
 			}
 
@@ -133,7 +135,24 @@ namespace ConsoleQuest
 
 			return BattleState.Continue;
 		}
-	}
+
+
+		int inMoveNum()
+		{
+			int movenum = 0;
+			try
+			{
+				movenum = int.Parse(Console.ReadLine());
+			}
+			catch
+			{
+				movenum = 0;
+				return movenum;
+			}
+			return movenum;
+		}
+
+		}
 
 	public enum BattleState
 	{

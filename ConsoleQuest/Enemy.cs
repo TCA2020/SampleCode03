@@ -12,9 +12,9 @@ namespace ConsoleQuest
 		public int GainCoin 
 		{ get; private set; }
 
-		public Enemy(string name, float maxHP, float attackPoint, float defencePoint, float mp,float ing,
+		public Enemy(string name, float maxHP,float hp, float attackPoint, float defencePoint, float Maxmp,float mp,float ing,
 			int gainExp, int gainCoin)
-			: base(name, maxHP, attackPoint, defencePoint, mp, ing)
+			: base(name, maxHP,hp, attackPoint, defencePoint,Maxmp, mp, ing)
 		{
 			GainExp = gainExp;
 			GainCoin = gainCoin;

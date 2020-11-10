@@ -35,7 +35,7 @@ namespace ConsoleQuest
 				string Playname = Logger.ReadInput();
 
 				//create player
-				Player player = new Player(Playname, 100f, 10f, 5f, 10f, 1f, 1, 0f, 1f, 0f, 10f);
+				Player player = new Player(Playname, 100f,100f, 10f, 5f, 10f,10f, 1f, 1, 0f, 1f, 0f, 10f);
 				World world = new World(player);
 
 				//worldが終了判定(false)を返すまでループ
@@ -47,7 +47,7 @@ namespace ConsoleQuest
 			}
 			else
 			{
-				Player saveplayer = new Player(loadedPlayer.Name,loadedPlayer.MaxHP,loadedPlayer.ATK,loadedPlayer.DEF,loadedPlayer.MaxMP,loadedPlayer.Preing,
+				Player saveplayer = new Player(loadedPlayer.Name,loadedPlayer.MaxHP,loadedPlayer.HP,loadedPlayer.ATK,loadedPlayer.DEF,loadedPlayer.MaxMP,loadedPlayer.MP,loadedPlayer.Preing,
 					loadedPlayer.Level,loadedPlayer.Exp,loadedPlayer.HealNum,loadedPlayer.Coin,loadedPlayer.Next);
 				World world = new World(saveplayer);
 
@@ -87,7 +87,7 @@ namespace ConsoleQuest
 
 		private static Player MakeDefaultData()
 		{
-			Player player = new Player("null", 100f, 10f, 5f, 10f, 0f, 1, 0f, 1f, 0f, 10f);
+			Player player = new Player("null", 100f,100f, 10f, 5f, 10f,10f, 0f, 1, 0f, 1f, 0f, 10f);
 
 
 			return player;

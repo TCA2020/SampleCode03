@@ -33,14 +33,14 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 
-		public Character(string name, float maxHP, float atk, float def, float maxmp, float praing)
+		public Character(string name, float maxHP,float hp, float atk, float def, float maxmp,float mp, float praing)
 		{
 			Name = name;
 			MaxHP = maxHP;
-			HP = maxHP;
+			HP = hp;
 			ATK = atk;
 			DEF = def;
-			MaxMP = maxmp;
+			MaxMP = mp;
 			MP = maxmp;
 			Preing = praing;
 		}

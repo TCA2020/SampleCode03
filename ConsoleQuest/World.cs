@@ -21,7 +21,7 @@ namespace ConsoleQuest
 			int action_num = 0;
 			BattleState battleState = BattleState.Continue;
 			Logger.Log("何をしますか\n1= ステータス表示 \n2 = 移動(敵とバトル)\n3 = 回復薬使用  回復薬所持数:" + MyPlayer.HealNum + "\n4 = 回復薬購入　50G\n5 = セーブ");
-			action_num = int.Parse(Console.ReadLine());
+			action_num = inMoveNum();
 
 			switch (action_num)
 			{
@@ -39,21 +39,21 @@ namespace ConsoleQuest
 				case 2:
 					Random md = new System.Random();
 					int num = md.Next(6);
-					Enemy enemy = new Enemy("ダミー",0,0,0,0,0,0,0);
+					Enemy enemy = new Enemy("ダミー",0,0,0,0,0,0,0,0,0);
 					//敵を生成
 					switch (num) 
 					{
 						case 0:
 						case 1:
 						case 2:
-							enemy = new Enemy("スライム", 20, 10, 2, 10, 0, 10, 10);
+							enemy = new Enemy("スライム", 20, 20, 10, 2, 10, 10, 0, 10, 10);
 							break;
 						case 3:
 						case 4:
-							enemy = new Enemy("ゴブリン", 35, 13, 3, 10, 0, 15, 15);
+							enemy = new Enemy("ゴブリン", 35, 35, 13, 3, 10, 10, 0, 15, 15);
 							break;
 						case 5:
-							enemy = new Enemy("オーク", 50, 15, 5, 10, 0, 30, 30);
+							enemy = new Enemy("オーク", 50, 50, 15, 5, 10, 10, 0, 30, 30);
 							break;
 					
 					}
@@ -125,7 +125,8 @@ namespace ConsoleQuest
 					return battleState == BattleState.Continue;
 
 				default:
-					Logger.Log("該当の数値を入力してください");
+					Console.Clear();
+					Logger.Log("該当の数値を入力してください\nEnterで戻る");
 					return battleState == BattleState.Continue;
 					
 			}
@@ -133,6 +134,22 @@ namespace ConsoleQuest
 
 			//勝利ならループ継続
 			return battleState == BattleState.Win;
+		}
+
+	 int inMoveNum()
+		{
+			int movenum = 0;
+			try
+			{
+				movenum = int.Parse(Console.ReadLine());
+			}
+			catch
+			{
+				movenum = 0;
+				return movenum;
+			}
+
+			return movenum;
 		}
 
 
