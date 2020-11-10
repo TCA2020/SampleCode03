@@ -25,8 +25,15 @@ namespace ConsoleQuest
                     int Y_action = int.Parse(Console.ReadLine());
                     if (Y_action == 1)
                     {
-                        INN(Cplayer);
-                        Logger.Log("ご利用ありがとうございました。");
+                        if (Cplayer.Gold >= 30)
+                        {
+                            INN(Cplayer);
+                            Logger.Log("ご利用ありがとうございました。");
+                        }
+                        else
+                        {
+                            Logger.Log("お金が足りません。");
+                        }
                     }
                     Logger.Log("またお越しください。");
                     return Cityarea.Continue;
