@@ -30,8 +30,8 @@ namespace ConsoleQuest
 			string Playername = Logger.ReadInput();
 
 			//create player
-			Player player = new Player(Playername, 100f, 10f, 5f, 1, 0, 
-				new Weapon("剣", 20f, 20));
+			Player player = new Player(Playername, 100f, 10f, 5f, 
+				new Weapon("剣", 20f));
 
 			//create world
 			World world = new World(player);
@@ -39,17 +39,22 @@ namespace ConsoleQuest
 			//worldが終了判定(false)を返すまでループ
 			while(world.Loop())
 			{
+				SavePlayerJson(player, jsonPath);
 				//Enter入力を待つ
 				Logger.ReadInput();
-				
 
-				SavePlayerJson(player, jsonPath);
-				
 			}
 
 			//THE END
 			Logger.Log("game over.");
 		}
+
+
+
+
+
+
+
 		//セーブ
 		private static void SavePlayerJson(Player data,string filPath)
 		{
@@ -76,8 +81,8 @@ namespace ConsoleQuest
 		//最初
 		private static Player MakeDefaultData()
 		{
-			Player NP = new Player("new", 100f, 10f, 5f, 1, 0,
-				new Weapon("Sword", 20f, 20));
+			Player NP = new Player("new", 100f, 10f, 5f,
+				new Weapon("剣", 20f));
 			return NP;
 		}
 

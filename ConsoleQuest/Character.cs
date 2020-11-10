@@ -50,19 +50,5 @@ namespace ConsoleQuest
 		
 	}
 
-	public class Weapon
-	{
-		public string Name;
-		public float WATK
-		{ get; set; }
-		public int Price;
-
-		public Weapon(string name,float watk,int price)
-		{
-			Name = name;
-			WATK = watk;
-			Price = price;
-		}
-		
-	}
+	
 }

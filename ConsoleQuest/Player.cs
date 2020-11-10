@@ -7,26 +7,23 @@ namespace ConsoleQuest
 	public class Player : Character
 	{
 		
-
-		public int Level
-		{ get;  set; }
-
-		public int Exp
-		{ get;  set; }
-
-		public Weapon EquipWeapon
-		{ get;  set; }
 		
 
-		public Player(string name, float maxHP, float attackPoint, float defencePoint,
-			int level, int exp, Weapon weapon)
+		public Weapon EquipWeapon
+		{ get; set; }
+		
+
+		public Player(string name, float maxHP, float attackPoint, float defencePoint, Weapon weapon)
 			: base(name, maxHP, attackPoint, defencePoint)
 		{
-			Level = level;
-			Exp = exp;
+			
 			EquipWeapon = weapon;
-			AttackPoint  = attackPoint + weapon.WATK;
+			AttackPoint  = attackPoint + 20f;//weapon.WATK
+
 		}
+
+
+
 
 		public int Choice()
 		{
@@ -54,6 +51,9 @@ namespace ConsoleQuest
 
 			return choice;
 		}
+
+
+
 
 		public void PlayerChoice(int dec)
 		{
