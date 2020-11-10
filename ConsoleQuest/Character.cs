@@ -7,22 +7,22 @@ namespace ConsoleQuest
 	public class Character
 	{
 		public string Name
-		{ get; set; }
+		{ get; private set; }
 
 		public float MaxHP
-		{ get; set; }
+		{ get; private set; }
 
 		public float HP
-		{ get; set; }
+		{ get; protected set; }
 
 		public bool IsAlive
 		{ get { return HP > 0; } }
 
 		public float AttackPoint
-		{ get; set; }
+		{ get; private set; }
 
 		public float DefencePoint
-		{ get; set; }
+		{ get; private set; }
 
 		public Character()
 		{
@@ -46,6 +46,7 @@ namespace ConsoleQuest
 
 			return damage;
 		}
+		 
 
 
 	}

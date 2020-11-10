@@ -4,6 +4,8 @@ namespace ConsoleQuest
 {
 	class Program
 	{
+		private static readonly string currentDir = System.IO.Directory.GetCurrentDirectory();
+		private static readonly string jsonfile = currentDir + "\\data.json";
 		static void Main(string[] args)
 		{
 			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
@@ -12,12 +14,11 @@ namespace ConsoleQuest
 
 
 
-			string currentDir = System.IO.Directory.GetCurrentDirectory();
-			string jsonfile = currentDir + "\\data.json";
 
-			Player player = null ;
 
-			if (!System.IO.File.Exists(jsonfile))
+			Player player = json.LoadPlayer(jsonfile);
+
+			if (player == null)
 			{
 				Logger.Log("プレイヤーの名前を入力してください");
 				
@@ -27,7 +28,7 @@ namespace ConsoleQuest
 				player = new Player(Playname, 100f, 10f, 5f, 1, 0);
 				json.savejson(player, jsonfile);
 			}
-			else if (json.loaddata(jsonfile, out player))
+			else if (player != null)
 			{
 
 
@@ -68,9 +69,8 @@ namespace ConsoleQuest
 			Logger.Log("game over.");
 			json.savejson(player, jsonfile);
 		}
-	
-	
-	
+
+		
 
 
 	}

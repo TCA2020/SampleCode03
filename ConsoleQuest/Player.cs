@@ -8,10 +8,10 @@ namespace ConsoleQuest
 	{
 
 		public int Level
-		{ get;  set; }
+		{ get; private set; }
 
 		public int Exp
-		{ get;  set; }
+		{ get; private set; }
 
 		public Player(string name, float maxHP, float attackPoint, float defencePoint,
 			int level, int exp)
@@ -46,17 +46,27 @@ namespace ConsoleQuest
 			
 			}
 
-		public void Get_expLVL(Enemy target){ 
+		public void Get_expLVL(Enemy target)
+		{
 			this.Exp = target.GainExp + this.Exp;
-			if (this.Exp >= exp_table(this.Level)) 
-				{
+			if (this.Exp >= exp_table(this.Level))
+			{
 				this.Exp -= exp_table(this.Level);
 				this.Level++;
 				Logger.Log("Level Up!!");
 				this.HP = this.MaxHP;
-				
-				}
 			}
+		}
+
+		public Player(PlayerSaveData data)
+				: base(data.name,data.maxHP,data.attackPoint,data.defencePoint) 
+		{
+
+			Level = data.Level;
+			Exp = data.Exp;
+			HP = data.HP;
+
+		}
 
 	}
 }
