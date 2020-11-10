@@ -42,7 +42,7 @@ namespace ConsoleQuest
 				string playname = Logger.ReadInput();
 
 				//create player
-				Player player = new Player(playname, 100f, 10f, 5f, 10f, 1, 1, 0, 20, new List<string>() { "薬草" },0);
+				Player player = new Player(playname, 100f, 10f, 5f, 10f, 1, 1, 0, 20, 0);
 				World world = new World(player);
 
 				//worldが終了判定(false)を返すまでループ
@@ -97,7 +97,7 @@ namespace ConsoleQuest
 		//Json出力のため、最初に入れておくためのデータを作る
 		private static Player MakeDefaultData( )
 		{
-			Player player = new Player("プレイヤー", 100f, 10f, 5f, 10, 0, 1, 0, 20, new List<string>() { "薬草" },0);
+			Player player = new Player("プレイヤー", 100f, 10f, 5f, 10, 0, 1, 0, 20,0);
 
 			return player;
 		}

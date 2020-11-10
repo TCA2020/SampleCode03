@@ -23,8 +23,22 @@ namespace ConsoleQuest
         {
 			System.Random random = new Random();//敵のランダム出現
 			int j = random.Next(2) + 1;
+			switch(j){
+				case 1:
+					Enemy enemy = new Enemy("スライム", 15, 10, 2, 10, 15, 5);
+					break;
 
+				case 2:
+					Enemy enemy2 = new Enemy("ゴブリン",30 , 10, 2, 10, 15, 5);
+					break;
+			}
 
+		}
+		public void EnemylevelUp()
+		{
+			LevelUp();
+			GainExp *= 2;
+			GainGold *= 2;
 		}
 
 	}

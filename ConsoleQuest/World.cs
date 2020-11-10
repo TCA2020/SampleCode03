@@ -23,9 +23,10 @@ namespace ConsoleQuest
 			Cityarea cityarea = Cityarea.Continue;
 			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nHP:" + MyPlayer.HP + "/" + MyPlayer.MaxHP + "\nMP:" + MyPlayer.MP + "/" + MyPlayer.MaxMP
 				+ "\n攻撃力:" + MyPlayer.ATK + "\n防御力:" + MyPlayer.DEF + "\n所持アイテム:" + MyPlayer.Item + "\n所持金" + MyPlayer.Gold + "G");
+			try
+			{
 			Logger.Log("-----行動-----\n1=経験値確認\n2=戦闘\n3=街に行く\n4=セーブ");
 			action = int.Parse(Console.ReadLine());
-
             switch (action)
             {
 				case 1:
@@ -69,6 +70,8 @@ namespace ConsoleQuest
 					//セーブ
 					System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "\\Player.txt", Newtonsoft.Json.JsonConvert.SerializeObject(MyPlayer));
 
+					Logger.ReadInput();
+
 					Logger.Log("ゲームを終了しますか\nはい=1\nいいえ=2");
 					action2 = int.Parse(Console.ReadLine());
 					switch (action2)
@@ -83,11 +86,13 @@ namespace ConsoleQuest
 
 					}
 					break;
-
-
-				default:
-					Logger.Log("該当の値を入れてください。");
-					return battleState == BattleState.Continue;
+					
+			}
+			}
+			catch(Exception e)
+			{
+				Logger.Log("該当の値を入れてください。");
+				return battleState == BattleState.Continue;
 			}
 
 

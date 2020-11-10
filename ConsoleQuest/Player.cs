@@ -19,21 +19,18 @@ namespace ConsoleQuest
 		public float MaxExp
 		{ get; set; }
 
-		public List<string> Item
-		{ get; set; }
 
 		public int Gold
 		{ get; set; }
 
 		public Player(string name, float maxHP, float atk, float def, float maxMP,float playing,
-			int level, int exp,float maxexp,List<string> item,int gold)
+			int level, int exp,float maxexp,int gold)
 			: base(name, maxHP, atk, def,maxMP)
 		{
 			Playing = playing;
 			Level = level;
 			Exp = exp;
 			MaxExp = maxexp;
-			Item = item;
 			Gold = gold;
 		}
 
