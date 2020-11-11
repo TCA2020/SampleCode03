@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace ConsoleQuest
 {
 	class Program
@@ -31,4 +32,5 @@ namespace ConsoleQuest
 			Logger.Log("ゲーム　終わりました.");
 		}
 	}
+	
 }

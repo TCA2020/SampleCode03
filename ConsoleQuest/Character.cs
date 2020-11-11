@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace ConsoleQuest
 {
@@ -32,6 +33,7 @@ namespace ConsoleQuest
 			HP = maxHP;
 			AttackPoint = attackPoint;
 			DefencePoint = defencePoint;
+		
 		}
 
 
@@ -42,7 +44,41 @@ namespace ConsoleQuest
 
 			return damage;
 		}
+		private static readonly string SavedataPath =
+				System.IO.Directory.GetCurrentDirectory() + "\\save.json";
 
+		private static void SavePlayerData(Player player)
+		{
+			SaveData data = new SaveData();
+			data.Player = new PlayerSaveData();
+			data.Player.HP = player.HP;
+			data.Player.MaxHP = player.MaxHP;
+			data.Player.Name = player.Name;
+			data.Player.AttackPoint = player.AttackPoint;
+			data.Player.DefencePoint = player.DefencePoint;
+			data.Player.Level = player.Level;
+			data.Player.Exp = player.Exp;
+
+			string dataJson = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+			System.IO.File.WriteAllText(SavedataPath, dataJson);
+		}
+
+		private static Player LoadPlayerData()
+		{
+			try
+			{
+				string dataJson = System.IO.File.ReadAllText(SavedataPath);
+				SaveData saveData =
+					Newtonsoft.Json.JsonConvert.DeserializeObject<SaveData>(dataJson);
+
+				Player player = new Player(saveData.Player) ;
+				return player;
+			}
+			catch
+			{
+				return null;
+			}
+		}
 
 	}
 }

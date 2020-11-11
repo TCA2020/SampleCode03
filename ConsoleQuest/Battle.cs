@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace ConsoleQuest
 {
 	public class Battle
@@ -43,6 +44,7 @@ namespace ConsoleQuest
 			return BattleState.Continue;
 		}
 	}
+	
 
 	public enum BattleState
 	{
