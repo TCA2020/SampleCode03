@@ -8,7 +8,7 @@ namespace ConsoleQuest
 		{
 			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
 
-			Logger.Log("Start Game!");
+			Logger.Log("ゲーム　スタート!");
 
 			Logger.Log("プレイヤーの名前を入力してください");
 
@@ -28,7 +28,7 @@ namespace ConsoleQuest
 			}
 
 			//THE END
-			Logger.Log("game over.");
+			Logger.Log("ゲーム　終わりました.");
 		}
 	}
 }
