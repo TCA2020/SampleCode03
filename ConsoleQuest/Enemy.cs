@@ -18,4 +18,9 @@ namespace ConsoleQuest
 
 
 	}
+
+	public class copyEnemy
+	{
+		public Enemy Enemy;
+	}
 }

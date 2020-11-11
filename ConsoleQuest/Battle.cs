@@ -7,9 +7,9 @@ namespace ConsoleQuest
 	public class Battle
 	{
 		private Player BattlePlayer;
-		private Enemy BattleEnemy;
+		private copyEnemy BattleEnemy;
 
-		public Battle(Player player, Enemy enemy)
+		public Battle(Player player, copyEnemy enemy)
 		{
 			BattlePlayer = player;
 			BattleEnemy = enemy;
@@ -22,21 +22,21 @@ namespace ConsoleQuest
 		public BattleState AdvanceTurn()
 		{
 			//プレイヤーと敵が殴り合う
-			float damage = BattlePlayer.Attack(BattleEnemy);
-			Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
+			float damage = BattlePlayer.Attack(BattleEnemy.Enemy);
+			Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Enemy.Name + "に" + damage + "のダメージ");
 			
-			if(!BattleEnemy.IsAlive)
+			if(!BattleEnemy.Enemy.IsAlive)
 			{
-				Logger.Log(BattleEnemy.Name + "を倒した！");
+				Logger.Log(BattleEnemy.Enemy.Name + "を倒した！");
 				return BattleState.Win;
 			}
 			else
 			{
-				Logger.Log("敵の残りHP:" + BattleEnemy.HP);
+				Logger.Log("敵の残りHP:" + BattleEnemy.Enemy.HP);
 			}
 
-			damage = BattleEnemy.Attack(BattlePlayer);
-			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
+			damage = BattleEnemy.Enemy.Attack(BattlePlayer);
+			Logger.Log(BattleEnemy.Enemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
 
 			if(!BattlePlayer.IsAlive)
 			{

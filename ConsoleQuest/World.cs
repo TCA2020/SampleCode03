@@ -23,9 +23,9 @@ namespace ConsoleQuest
 		{
 			//敵を生成
 			Enemy enemy = loadEnemy[enemypop.Next(0, 3)];
-			Enemy copyEnemy = enemy;
+			copyEnemy copyEnemy = Copy(enemy);
 
-			Logger.Log(copyEnemy.Name + "が現れた！");
+			Logger.Log(copyEnemy.Enemy.Name + "が現れた！");
 
 			//敵とバトル
 			Battle battle = new Battle(MyPlayer, copyEnemy);
@@ -43,6 +43,15 @@ namespace ConsoleQuest
 
 			//勝利ならループ継続
 			return battleState == BattleState.Win;
+		}
+
+		public copyEnemy Copy(Enemy loadenemy)
+		{
+			copyEnemy enemy = new copyEnemy();
+			enemy.Enemy = loadenemy;
+			enemy.Enemy.HP = loadenemy.MaxHP;
+
+			return enemy;
 		}
 
 
