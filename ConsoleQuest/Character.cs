@@ -76,6 +76,7 @@ namespace ConsoleQuest
 		public void EnemylevelUp()
 		{
 			MaxHP *= 2;
+			HP = MaxHP;
 			ATK *= 2;
 			DEF *= 2;
 		}

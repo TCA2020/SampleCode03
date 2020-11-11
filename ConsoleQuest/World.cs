@@ -19,30 +19,29 @@ namespace ConsoleQuest
 		{
 			int action = 0;
 			int action2 = 0;
+			Console.Clear();
 			BattleState battleState = BattleState.Continue;
 			Cityarea cityarea = Cityarea.Continue;
 			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nHP:" + MyPlayer.HP + "/" + MyPlayer.MaxHP + "\nMP:" + MyPlayer.MP + "/" + MyPlayer.MaxMP
-				+ "\n攻撃力:" + MyPlayer.ATK + "\n防御力:" + MyPlayer.DEF + "\n所持アイテム:" + MyPlayer.Item + "\n所持金" + MyPlayer.Gold + "G");
-			try
-			{
+				+ "\n攻撃力:" + MyPlayer.ATK + "\n防御力:" + MyPlayer.DEF + /*"\n所持アイテム:" + MyPlayer.Item +*/ "\n所持金" + MyPlayer.Gold + "G");
 			Logger.Log("-----行動-----\n1=経験値確認\n2=戦闘\n3=街に行く\n4=セーブ");
-			action = int.Parse(Console.ReadLine());
-            switch (action)
-            {
+			action = Try_Catch();
+			switch (action)
+			{
+				
 				case 1:
-					Logger.Log("EXP" + MyPlayer.Exp +"/"+ MyPlayer.MaxExp); 
+					Logger.Log("EXP" + MyPlayer.Exp + "/" + MyPlayer.MaxExp);
 					return battleState == BattleState.Continue;
 
 				case 2:
-
-					Enemy enemy = new Enemy("敵", 30, 10, 2, 10, 15, 5);
+                    
+                    Enemy enemy = EnemyBattle();
 					Logger.Log(enemy.Name + "が現れた！");
 
 
-					Battle battle = new Battle(MyPlayer, enemy);
 
 					//敵とバトル
-
+					Battle battle = new Battle(MyPlayer, enemy);
 					do
 					{
 						battleState = battle.AdvanceTurn();
@@ -73,26 +72,22 @@ namespace ConsoleQuest
 					Logger.ReadInput();
 
 					Logger.Log("ゲームを終了しますか\nはい=1\nいいえ=2");
-					action2 = int.Parse(Console.ReadLine());
+					action2 = Try_Catch();
 					switch (action2)
 					{
 						case 1:
 							Logger.Log("ゲームを終了します。");
 							return battleState == BattleState.Lose;
 
-						case 2:
+						default:
 							Logger.Log("ゲームを続けます。");
 							return battleState == BattleState.Continue;
-
 					}
-					break;
-					
-			}
-			}
-			catch(Exception e)
-			{
-				Logger.Log("該当の値を入れてください。");
-				return battleState == BattleState.Continue;
+				default:
+
+					Logger.Log("該当の値を入れてください。");
+					return battleState == BattleState.Continue;
+
 			}
 
 
@@ -100,6 +95,88 @@ namespace ConsoleQuest
 			return battleState == BattleState.Win|| battleState == BattleState.Escape || cityarea == Cityarea.finish;
 		}
 
+		int Try_Catch()
+        {
+			int action;
+            try
+            {
+				action = int.Parse(Console.ReadLine());
+			}
+			catch(Exception e)
+            {
+				action = 0;
+				return action;
+            }
+            finally
+            {
+				Console.Clear();
+            }
+			return action;
+        }
 
+		public Enemy EnemyBattle()
+		{
+			Random er = new Random();//敵のランダム出現
+			int enemynum = er.Next(3) + 1;
+			Enemy enemy = new Enemy("ゴブリン", 15, 10, 5, 10, 13, 5);
+			switch (enemynum)
+			{
+				case 1:
+					enemy = new Enemy("スライム", 10, 5, 2, 10, 5, 2);
+					break;
+
+				case 2:
+					enemy = new Enemy("ゴブリン", 15, 10, 5, 10, 10, 5);
+					break;
+
+				case 3:
+                    if (MyPlayer.Level >= 5)
+                    {
+					enemy = new Enemy("オーガ", 30, 20, 15, 10, 20, 20);
+                    }
+					break;
+
+				case 4:
+                    if (MyPlayer.Level >= 10)
+                    {
+					enemy = new Enemy("トロール", 40, 25, 20, 10, 30, 30);
+                    }
+					break;
+
+				default:
+					enemy = new Enemy("スライム", 10, 5, 2, 10, 5, 2);
+					break;
+			}
+
+			if (MyPlayer.Level >= 5 )
+			{
+				if (enemynum >= 1)
+				{
+					if (enemynum == 4 && MyPlayer.Level >= 15)
+					{
+						EnemyLvUP(enemy);
+					}else if (enemynum == 3 && MyPlayer.Level >= 10)
+					{
+						EnemyLvUP(enemy);
+					}else if(enemynum != 3)
+					{
+						Console.WriteLine("1");
+						EnemyLvUP(enemy);
+					}
+				}
+			}
+			return enemy;
+			
+		}
+
+		public void EnemyLvUP(Enemy enemy)
+        {
+				
+				Console.WriteLine("2");
+			for (int i = 1; MyPlayer.Level >= 5 * i; i++)
+			{
+				enemy.LevelUpEnemy();
+			}
+		}
 	}
 }

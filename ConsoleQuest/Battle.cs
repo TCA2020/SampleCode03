@@ -23,18 +23,34 @@ namespace ConsoleQuest
 		{
 			int action = 0;
 			float damage = 0;
-			Logger.Log("---------\n"+BattlePlayer.Name+"\nHP:" + BattlePlayer.HP+"\nMP:"+BattlePlayer.MP+"\nLv:"+BattlePlayer.Level);
-			Logger.Log("---------\n" + BattleEnemy.Name + "\nHP:" + BattleEnemy.HP + "/" + BattleEnemy.MaxHP+"\n");
+			Logger.Log("---------\n" + BattlePlayer.Name + "\nHP:" + BattlePlayer.HP + "\nMP:" + BattlePlayer.MP + "\nLv:" + BattlePlayer.Level);
+			Logger.Log("---------\n" + BattleEnemy.Name + "\nHP:" + BattleEnemy.HP + "/" + BattleEnemy.MaxHP + "\n");
 			Logger.Log("---行動入力---\n1=通常攻撃\n2=魔法攻撃\n3=防御\n4=逃げる");
-			action = int.Parse(Console.ReadLine());
+			action = Try_Catch();
 
-			try
+			switch (action)
 			{
-				switch (action)
-				{
-					case 1:
+				case 1:
 
-						damage = BattlePlayer.NormalAttack(BattleEnemy);
+					damage = BattlePlayer.NormalAttack(BattleEnemy);
+					Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
+
+					if (!BattleEnemy.IsAlive)
+					{
+						Logger.Log(BattleEnemy.Name + "を倒した！");
+						//経験値取得&レベルアップ
+						BattlePlayer.EXPCalc(BattleEnemy);
+						BattlePlayer.GoldCalc(BattleEnemy);
+
+						return BattleState.Win;
+					}
+
+					break;
+
+				case 2:
+					if (BattlePlayer.MP >= 5)
+					{
+						damage = BattlePlayer.MagicAttack(BattleEnemy);
 						Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
 
 						if (!BattleEnemy.IsAlive)
@@ -46,78 +62,57 @@ namespace ConsoleQuest
 
 							return BattleState.Win;
 						}
+					}
+					else
+					{
 
-						break;
-
-					case 2:
-						if (BattlePlayer.MP >= 5)
-						{
-							damage = BattlePlayer.MagicAttack(BattleEnemy);
-							Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
-
-							if (!BattleEnemy.IsAlive)
-							{
-								Logger.Log(BattleEnemy.Name + "を倒した！");
-								//経験値取得&レベルアップ
-								BattlePlayer.EXPCalc(BattleEnemy);
-								BattlePlayer.GoldCalc(BattleEnemy);
-
-								return BattleState.Win;
-							}
-						}
-						else
-						{
-
-							Logger.Log("MPが足りません。");
-							return BattleState.Continue;
-						}
-
-						break;
-
-					case 3:
-						damage = BattleEnemy.Defense(BattlePlayer);
-						Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
-
-						if (!BattlePlayer.IsAlive)
-						{
-							Logger.Log(BattlePlayer.Name + "は倒れた...");
-							return BattleState.Lose;
-						}
+						Logger.Log("MPが足りません。");
 						return BattleState.Continue;
+					}
+
+					break;
+
+				case 3:
+					damage = BattleEnemy.Defense(BattlePlayer);
+					Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
+
+					if (!BattlePlayer.IsAlive)
+					{
+						Logger.Log(BattlePlayer.Name + "は倒れた...");
+						return BattleState.Lose;
+					}
+					return BattleState.Continue;
 
 
-					case 4:
+				case 4:
 
-						System.Random random = new Random();
-						int escape = random.Next(2) + 1;
+					System.Random random = new Random();
+					int escape = random.Next(2) + 1;
 
-						if (escape == 1)
-						{
-							Logger.Log(BattlePlayer.Name + "は" + BattleEnemy.Name + "から逃げた。");
-							return BattleState.Escape;
-						}
-						else
-						{
-							Logger.Log("逃げられなかった。");
-						}
+					if (escape == 1)
+					{
+						Logger.Log(BattlePlayer.Name + "は" + BattleEnemy.Name + "から逃げた。");
+						return BattleState.Escape;
+					}
+					else
+					{
+						Logger.Log("逃げられなかった。");
+					}
 
-						break;
+					break;
+				default:
+					Console.WriteLine("該当する値を入力してください");
+					return BattleState.Continue;
 
 
-				}
 			}
-			catch(Exception e)
-			{
-				Console.WriteLine("もう一度入力してください");
-				return BattleState.Continue;
-			}
-			
-			
+
+
 
 			damage = BattleEnemy.NormalAttack(BattlePlayer);
 			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
 
-			if(!BattlePlayer.IsAlive)
+			if (!BattlePlayer.IsAlive)
 			{
 				Logger.Log(BattlePlayer.Name + "は倒れた...");
 				return BattleState.Lose;
@@ -125,7 +120,27 @@ namespace ConsoleQuest
 
 			return BattleState.Continue;
 		}
+
+		int Try_Catch()
+		{
+			int action;
+			try
+			{
+				action = int.Parse(Console.ReadLine());
+			}
+			catch (Exception e)
+			{
+				action = 0;
+				return action;
+			}
+            finally
+            {
+				Console.Clear();
+            }
+			return action;
+		}
 	}
+
 
 	public enum BattleState
 	{
