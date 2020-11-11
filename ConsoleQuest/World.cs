@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.Text;
 
 namespace ConsoleQuest
@@ -18,6 +19,10 @@ namespace ConsoleQuest
 		{
 			//敵を生成
 			Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
+			string json = JsonConvert.SerializeObject(enemy);
+			System.IO.File.WriteAllText(@"D:\character_enemy.txt", json);
+
+
 			Logger.Log(enemy.Name + "が現れた！");
 
 			//敵とバトル

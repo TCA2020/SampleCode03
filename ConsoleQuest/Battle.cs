@@ -28,6 +28,8 @@ namespace ConsoleQuest
 			if(!BattleEnemy.IsAlive)
 			{
 				Logger.Log(BattleEnemy.Name + "を倒した！");
+				float exp = BattlePlayer.LevelUp(BattlePlayer, BattleEnemy);
+				Logger.Log("経験値:" + BattlePlayer.Exp);
 				return BattleState.Win;
 			}
 

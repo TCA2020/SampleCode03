@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace ConsoleQuest
 {
 	public class Character
@@ -13,7 +14,7 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 		public float HP
-		{ get; private set; }
+		{ get; protected set; }
 
 		public bool IsAlive
 		{ get { return HP > 0; } }
@@ -43,6 +44,26 @@ namespace ConsoleQuest
 			return damage;
 		}
 
+		public void LevelUP()
+		{
+			AttackPoint += 10;
+			MaxHP += 10;
+			HP = MaxHP;
+		}
+
 
 	}
+		public class Weapon
+		{
+			public string Name;
+			public float Power;
+			public int Price;
+
+			public Weapon(string name, float power, int price)
+			{
+				Name = name;
+				Power = power;
+				Price = price;
+			}
+		}
 }
