@@ -13,7 +13,7 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 		public float HP
-		{ get; private set; }
+		{ get; protected set; }
 
 		public bool IsAlive
 		{ get { return HP > 0; } }
@@ -34,6 +34,12 @@ namespace ConsoleQuest
 			DefencePoint = defencePoint;
 		}
 
+		public float Heal(Character target)
+		{
+			float heal = target.HP += 50;
+
+				return heal;
+		}
 
 		public float Attack(Character target)
 		{

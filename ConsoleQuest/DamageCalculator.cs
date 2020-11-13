@@ -14,6 +14,7 @@ namespace ConsoleQuest
 		/// </summary>
 		/// <param name="attacker">攻撃側キャラ</param>
 		/// <param name="target">防御側キャラ</param>
+		/// <param name="HP">自キャラ</param>
 		/// <returns>ダメージ値</returns>
 		public static float CalculateDamage(Character attacker, Character target)
 		{

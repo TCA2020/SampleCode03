@@ -1,97 +1,83 @@
 ﻿using System;
 
-
 namespace ConsoleQuest
 {
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			Logger.Inject(new ConsoleLogger(), new ConsoleInput());
 
-    class program
-    {
+			Logger.Log("Start Game!");
 
-        static void Main(string[] args)
-        {
+			Player player = LoadPlayer();
+			if (player == null)
+			{
+				//初回プレイ
+				Logger.Log("プレイヤーの名前を入力してください");
+				string Playname = Logger.ReadInput();
 
-            string currentDirectory=System.IO.Directory.GetCurrentDirectory();
+				//create player
+				player = new Player(Playname, 100f, 10f, 5f, 1, 0);
+			}
+			else
+			{
+				//ロードに成功した
+				Logger.Log("続きから始めます");
+			}
 
-            string jsonPath=currentDirectory+"\\player.json";
 
-            if (!System.IO.File.Exists(jsonPath))
-            {
-                Console.WriteLine("Jsonファイルがないので、ダミーデータを基にJsonを生成して書き込みます…");
-                Console.WriteLine("出力先:"+jsonPath);
+			//create world
+			World world = new World(player);
 
-                Player dummy=MakeDefaultData();
-                SavePlayerJson(dummy,jsonPath);
-            }
+			//worldが終了判定(false)を返すまでループ
+			while (world.Loop())
+			{
+				//自動でセーブする
+				SavePlayer(player);
 
-            /*保存されているjsonデータをロードする*/
-            Player loadedPlayer;
-            if(!LoadPlayerJson(jsonPath,out loadedPlayer))
-            {
-                /*ロードに失敗した*/
-                return;
-            }
+				//Enter入力を待つ
+				Logger.ReadInput();
+			}
 
-            Logger.Inject(new ConsoleLogger(), new ConsoleInput());
+			//THE END
+			Logger.Log("game over.");
+		}
 
-            Logger.Log("Start Game!");
+		private static readonly string SaveDataPath =
+			System.IO.Directory.GetCurrentDirectory() + "\\savedata.json";
 
-            Logger.Log("プレイヤーの名前を入力してください:");
+		private static void SavePlayer(Player player)
+		{
+			SaveData saveData = new SaveData();
+			saveData.Player = new PlayerSaveData();
 
-            string PlayerName = Logger.ReadInput();
+			saveData.Player.HP = player.HP;
+			saveData.Player.MaxHP = player.MaxHP;
+			saveData.Player.Name = player.Name;
+			saveData.Player.AttackPoint = player.AttackPoint;
+			saveData.Player.DefencePoint = player.DefencePoint;
+			saveData.Player.Level = player.Level;
+			saveData.Player.Exp = player.Exp;
 
-            Console.WriteLine("プレイヤー(あなた)の最初のHPは" + loadedPlayer.MaxHP + "です。");
+			string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(saveData);
+			System.IO.File.WriteAllText(SaveDataPath, jsonData);
+		}
 
-            /*create player*/
-            Player player=new Player(PlayerName, 100f, 10f, 5f, 1, 0);
-
-            /*create world*/
-            World world = new World(player);
-
-            /*worldが終了判定(false)を返すまでループ*/
-            while(world.Loop())
-            {
-                /*Enter入力を待つ*/
-                Logger.ReadInput();
-            }
-        
-            
-
-            /*THE END*/
-            Logger.Log("Game Over.");
-        
-
-        
-    }
-
-        private static void SavePlayerJson(Player data, string filePath)
-        {
-            string jsonText = Newtonsoft.Json.JsonConvert.SerializeObject(data);
-            System.IO.File.WriteAllText(filePath, jsonText);
-        }
-
-        private static bool LoadPlayerJson(string filePath,out Player loadedInstance)
-        {
-
-            try
-            {
-                string jsonText=System.IO.File.ReadAllText(filePath);
-                loadedInstance=Newtonsoft.Json.JsonConvert.DeserializeObject<Player>(jsonText);
-                return true;
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("ロード失敗:"+e.Message);
-                loadedInstance=null;
-                return false;
-            }
-
-        }
-
-        private static Player MakeDefaultData()
-        {
-            Player player=new Player("PlayerName", 100f, 10f, 5f, 1, 0);
-
-            return player;
-        }
-    }
+		private static Player LoadPlayer()
+		{
+			try
+			{
+				string jsonData = System.IO.File.ReadAllText(SaveDataPath);
+				SaveData saveData = Newtonsoft.Json.
+					JsonConvert.DeserializeObject<SaveData>(jsonData);
+				Player player = new Player(saveData.Player);
+				return player;
+			}
+			catch
+			{
+				return null;
+			}
+		}
+	}
 }
