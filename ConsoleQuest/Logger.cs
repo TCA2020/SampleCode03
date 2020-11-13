@@ -6,6 +6,10 @@ namespace ConsoleQuest
 {
 	public static class Logger
 	{
+
+		private static readonly string LogDataPath =
+		System.IO.Directory.GetCurrentDirectory() + "\\logdata.json";
+
 		private static ILogger LoggerInstance;
 		private static IInput InputInstance;
 
@@ -18,11 +22,18 @@ namespace ConsoleQuest
 		public static void Log(string log)
 		{
 			LoggerInstance?.Log(log);
+			LogData loaddata = new LogData();
+			loaddata.Ldata = log;
+			string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(loaddata.Ldata);
+			System.IO.File.AppendAllText(LogDataPath, jsonData);
+
 		}
 
 		public static void Log(object log)
 		{
+
 			Log(log.ToString());
+
 		}
 
 
@@ -36,6 +47,7 @@ namespace ConsoleQuest
 	public interface ILogger
 	{
 		void Log(string log);
+
 	}
 
 	public interface IInput
@@ -46,9 +58,15 @@ namespace ConsoleQuest
 
 	public class ConsoleLogger : ILogger
 	{
+
+
+
 		public void Log(string log)
 		{
 			Console.WriteLine(log);
+
+			//string Ldata = new LogData();
+			//Ldata = log.Ldata;
 		}
 	}
 
