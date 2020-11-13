@@ -23,7 +23,7 @@ namespace ConsoleQuest
 			BattleState battleState = BattleState.Continue;
 			Cityarea cityarea = Cityarea.Continue;
 			Logger.Log("---------\n" + MyPlayer.Name + "\nLv:" + MyPlayer.Level + "\nHP:" + MyPlayer.HP + "/" + MyPlayer.MaxHP + "\nMP:" + MyPlayer.MP + "/" + MyPlayer.MaxMP
-				+ "\n攻撃力:" + MyPlayer.ATK + "\n防御力:" + MyPlayer.DEF + /*"\n所持アイテム:" + MyPlayer.Item +*/ "\n所持金" + MyPlayer.Gold + "G");
+				+ "\n攻撃力:" + MyPlayer.ATK + "\n防御力:" + MyPlayer.DEF + "\n所持金" + MyPlayer.Gold + "G");
 			Logger.Log("-----行動-----\n1=経験値確認\n2=戦闘\n3=街に行く\n4=セーブ");
 			action = Try_Catch();
 			switch (action)

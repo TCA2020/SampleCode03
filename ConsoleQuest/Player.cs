@@ -66,25 +66,5 @@ namespace ConsoleQuest
 			Gold += target.GainGold;
         }
 
-
-		/*public void Shop()
-        {
-			int action = 0;
-			Logger.Log("いらっしゃいませ！\n1=薬草:15G\n2=ポーション:30G");
-			action = int.Parse(Console.ReadLine());
-
-			switch(action)
-            {
-				case 1:
-					Logger.Log("薬草を購入しました。");
-					Item = List<string>(){ "薬草"};
-            }
-		}					
-		
-		public int Countchar(string item,char cout)
-        {
-			return item.Length - item.Replace(cout.ToString(), "").Length;
-        }*/
-
 	}
 }
