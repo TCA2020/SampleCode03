@@ -128,7 +128,7 @@ namespace ConsoleQuest
 			{
 				action = int.Parse(Console.ReadLine());
 			}
-			catch (Exception e)
+			catch
 			{
 				action = 0;
 				return action;
