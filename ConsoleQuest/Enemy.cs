@@ -19,22 +19,6 @@ namespace ConsoleQuest
 			GainGold = gainGold;
 		}
 
-		public  Enemy EnemyBattle()
-        {
-			Random er = new Random();//敵のランダム出現
-			int enemynum = er.Next(2) + 1;
-			Enemy enemy = new Enemy(" ", 0, 0, 0, 0, 0, 0);
-			switch (enemynum){
-				case 1:
-					enemy = new Enemy("スライム", 15, 10, 2, 10, 15, 5);
-					break;
-
-				case 2:
-					enemy = new Enemy("ゴブリン",30 , 10, 2, 10, 15, 5);
-					break;
-			}
-			return enemy;
-		}
 		public void LevelUpEnemy()
 		{
 			EnemylevelUp();
