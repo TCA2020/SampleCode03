@@ -38,8 +38,8 @@ namespace ConsoleQuest
 		public void LevelUpEnemy()
 		{
 			EnemylevelUp();
-			GainExp *= 2;
-			GainGold *= 2;
+			GainExp += 10;
+			GainGold += 5;
 		}
 
 	}

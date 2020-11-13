@@ -116,13 +116,23 @@ namespace ConsoleQuest
 
 		public Enemy EnemyBattle()
 		{
+			int metal = 0;
 			Random er = new Random();//敵のランダム出現
 			int enemynum = er.Next(3) + 1;
 			Enemy enemy = new Enemy("ゴブリン", 15, 10, 5, 10, 13, 5);
 			switch (enemynum)
 			{
 				case 1:
-					enemy = new Enemy("スライム", 10, 5, 2, 10, 5, 2);
+					Random slimeRm = new Random();//敵のランダム出現
+					metal = er.Next(4) + 1;
+					if (metal != 4)
+					{
+						enemy = new Enemy("スライム", 10, 5, 2, 10, 5, 2);
+					}
+					else
+					{
+						enemy = new Enemy("メタル", 5, 10, 30, 10, 50, 25);
+					}
 					break;
 
 				case 2:
@@ -154,14 +164,25 @@ namespace ConsoleQuest
 				{
 					if (enemynum == 4 && MyPlayer.Level >= 15)
 					{
-						EnemyLvUP(enemy);
+						for (int i = 1; MyPlayer.Level >= 5 * i; i++)
+						{
+							if(i==3)
+								EnemyLvUP(enemy);
+						}
 					}else if (enemynum == 3 && MyPlayer.Level >= 10)
 					{
-						EnemyLvUP(enemy);
+						for (int i = 1; MyPlayer.Level >= 5 * i; i++)
+						{
+							if(i==2)
+								EnemyLvUP(enemy);
+						}
 					}else if(enemynum != 3)
 					{
-						Console.WriteLine("1");
-						EnemyLvUP(enemy);
+						for (int i = 1; MyPlayer.Level >= 5 * i; i++)
+						{
+							if(metal !=4)
+								EnemyLvUP(enemy);
+						}
 					}
 				}
 			}
@@ -171,12 +192,8 @@ namespace ConsoleQuest
 
 		public void EnemyLvUP(Enemy enemy)
         {
-				
-				Console.WriteLine("2");
-			for (int i = 1; MyPlayer.Level >= 5 * i; i++)
-			{
+						
 				enemy.LevelUpEnemy();
-			}
 		}
 	}
 }
