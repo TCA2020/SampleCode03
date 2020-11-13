@@ -28,8 +28,14 @@ namespace ConsoleQuest
 			if(!BattleEnemy.IsAlive)
 			{
 				Logger.Log(BattleEnemy.Name + "を倒した！");
+				Logger.Log(BattlePlayer.Name + "は5の経験値を手に入れた") ;
+				BattlePlayer.LEVELUP(BattleEnemy);
+
 				return BattleState.Win;
 			}
+
+		
+
 
 			damage = BattleEnemy.Attack(BattlePlayer);
 			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");

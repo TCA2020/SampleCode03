@@ -16,6 +16,15 @@ namespace ConsoleQuest
 			GainExp = gainExp;
 		}
 
+		/*public strongEnemy(string boss, float maxHP, float attackPoint, float defencePoint,
+			int gainExp)
+		
+			: base(boss, maxHP+20, attackPoint+10, defencePoint + 15) 
+		{
+			GainExp = gainExp;
+
+			return;
+		}*/
 
 	}
 }

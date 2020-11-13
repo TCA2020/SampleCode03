@@ -13,7 +13,7 @@ namespace ConsoleQuest
 		{ get; private set; }
 
 		public float HP
-		{ get; private set; }
+		{ get; protected set; }
 
 		public bool IsAlive
 		{ get { return HP > 0; } }
@@ -43,6 +43,13 @@ namespace ConsoleQuest
 			return damage;
 		}
 
+		public void Status()
+		{
+			MaxHP = MaxHP + 5;
+			HP = MaxHP;
+			AttackPoint++;
+			DefencePoint++;
+		}
 
 	}
 }
