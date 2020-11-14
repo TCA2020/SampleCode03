@@ -17,8 +17,8 @@ namespace ConsoleQuest
 		public bool Loop()
 		{
 			//敵を生成
-			Enemy enemy = new Enemy("敵", 30, 10, 2, 10);
-			Logger.Log(enemy.Name + "が現れた！");
+			Enemy enemy = new Enemy("ごきぶりさん", 30, 10, 2, 10);
+			Logger.Log(enemy.Name + "が冷蔵庫の隙間からこんにちは!!!!!!!!!!!");
 
 			//敵とバトル
 			Battle battle = new Battle(MyPlayer, enemy);

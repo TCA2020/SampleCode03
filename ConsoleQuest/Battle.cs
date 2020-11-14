@@ -23,7 +23,7 @@ namespace ConsoleQuest
 		{
 			//プレイヤーと敵が殴り合う
 			float damage = BattlePlayer.Attack(BattleEnemy);
-			Logger.Log(BattlePlayer.Name + "の攻撃:" + BattleEnemy.Name + "に" + damage + "のダメージ");
+			Logger.Log(BattlePlayer.Name + "のでこぴん!!!!!!!!!!:" + BattleEnemy.Name + "に" + damage + "のダメージ");
 			
 			if(!BattleEnemy.IsAlive)
 			{
@@ -32,11 +32,11 @@ namespace ConsoleQuest
 			}
 
 			damage = BattleEnemy.Attack(BattlePlayer);
-			Logger.Log(BattleEnemy.Name + "の攻撃:" + BattlePlayer.Name + "に" + damage + "のダメージ");
+			Logger.Log(BattleEnemy.Name + "のひざかっくん!!!!!!!!!!:" + BattlePlayer.Name + "に" + damage + "のダメージ");
 
 			if(!BattlePlayer.IsAlive)
 			{
-				Logger.Log(BattlePlayer.Name + "は倒れた...");
+				Logger.Log(BattlePlayer.Name + "は気持ち悪くなって家から飛び出してしまった......");
 				return BattleState.Lose;
 			}
 
