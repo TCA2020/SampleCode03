@@ -6,6 +6,10 @@ namespace ConsoleQuest
 {
 	public class Battle
 	{
+<<<<<<< Updated upstream
+=======
+		
+>>>>>>> Stashed changes
 		private Player BattlePlayer;
 		private Enemy BattleEnemy;
 
