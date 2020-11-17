@@ -1,8 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BattleContext.cs" />
+    <Compile Remove="EnemyBattler.cs" />
+    <Compile Remove="PlayerBattler.cs" />
+    <Compile Remove="SingleAttackSkill.cs" />
+    <Compile Remove="Skill.cs" />
+    <Compile Remove="tripleAttackskill.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
 
 </Project>

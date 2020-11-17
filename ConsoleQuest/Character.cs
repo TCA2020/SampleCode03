@@ -38,11 +38,17 @@ namespace ConsoleQuest
 		public float Attack(Character target)
 		{
 			float damage = DamageCalculator.CalculateDamage(this, target);
-
 			target.HP -= damage;
+
 			return damage;
 		}
-
+		public void LevelUP()
+		{
+			MaxHP += 10;
+			MaxHP += 5;
+			
+			 
+		}
 
 	}
 }
