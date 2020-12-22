@@ -43,5 +43,12 @@ namespace ConsoleQuest
             return damage;
         }
 
+        public void LevelUP()
+        {
+            MaxHP += 10;
+            HP = MaxHP;
+            AttackPoint += 5;
+        }
+
     }
 }
